@@ -6,30 +6,27 @@ import com.mycompany.quanlydiemthidaihoc.view.ManagerKhoiThiView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.stream.Collectors;
 
-   public class ManagerKhoiThiController {
+public class ManagerKhoiThiController {
 
-    private ManagerKhoiThiView khoiThiView;
-    private ManagerKhoiThi managerKhoiThi;
+    private final ManagerKhoiThiView khoiThiView;
+    private final ManagerKhoiThi managerKhoiThi;
 
     public ManagerKhoiThiController(ManagerKhoiThiView view, ManagerKhoiThi manager) {
-    this.khoiThiView = view;
-    this.managerKhoiThi = manager;
+        this.khoiThiView = view;
+        this.managerKhoiThi = manager;
 
-    khoiThiView.addAddKhoiThiListener(new AddKhoiThiListener());
-    khoiThiView.addDeleteKhoiThiListener(new DeleteKhoiThiListener());
+        // 👉 SỬ DỤNG HÀM CHUẨN TRONG VIEW
+        khoiThiView.addAddListener(new AddKhoiThiListener());
+        khoiThiView.addDeleteListener(new DeleteKhoiThiListener());
 
-    loadKhoiThiTable();
-}
-
+        loadKhoiThiTable();
+    }
 
     private void loadKhoiThiTable() {
-    khoiThiView.setKhoiThiTable(managerKhoiThi.getListKhoiThi()); 
-}
+        khoiThiView.setKhoiThiTable(managerKhoiThi.getListKhoiThi());
+    }
 
-
-    // ✅ Cần phải PUBLIC để lớp khác (như View) sử dụng được
     public class AddKhoiThiListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -38,30 +35,37 @@ import java.util.stream.Collectors;
                 khoiThiView.showMessage("Tên khối thi không được để trống!");
                 return;
             }
+
+            if (khoiThiView.getSelectedMonThi().isEmpty()) {
+                khoiThiView.showMessage("Vui lòng chọn ít nhất 1 môn thi!");
+                return;
+            }
+
             KhoiThi khoiThi = new KhoiThi();
             khoiThi.setTenKhoi(tenKhoi);
+            khoiThi.setMonThiList(khoiThiView.getSelectedMonThi());
+
             managerKhoiThi.add(khoiThi);
+
             loadKhoiThiTable();
-            khoiThiView.clearTenKhoi();
+            khoiThiView.clearForm();
             khoiThiView.showMessage("Thêm khối thi thành công!");
         }
     }
 
-    // ✅ Cần phải PUBLIC để lớp khác (như View) sử dụng được
     public class DeleteKhoiThiListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int id = khoiThiView.getSelectedKhoiThiId();
-            if (id == -1) {
+            int index = khoiThiView.getSelectedKhoiIndex();
+            if (index == -1) {
                 khoiThiView.showMessage("Vui lòng chọn khối thi để xóa!");
                 return;
             }
-            KhoiThi khoiThi = new KhoiThi();
-            khoiThi.setId(id);
-            managerKhoiThi.delete(khoiThi);
+
+            managerKhoiThi.deleteAt(index);
+
             loadKhoiThiTable();
             khoiThiView.showMessage("Xóa khối thi thành công!");
         }
     }
 }
-

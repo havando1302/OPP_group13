@@ -1,6 +1,5 @@
 package com.mycompany.quanlydiemthidaihoc.view;
 
-import com.mycompany.quanlydiemthidaihoc.controller.ManagerKhoiThiController;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
 import com.mycompany.quanlydiemthidaihoc.entity.MonThi;
 
@@ -53,10 +52,8 @@ public class ManagerKhoiThiView extends JFrame {
         gbc.anchor = GridBagConstraints.NORTHWEST;
         panelInput.add(lblMonThi, gbc);
 
-        // PANEL chứa CHECKBOX MON THI
         panelCheckBoxMonThi = new JPanel();
         panelCheckBoxMonThi.setLayout(new BoxLayout(panelCheckBoxMonThi, BoxLayout.Y_AXIS));
-
         JScrollPane scrollCheckBox = new JScrollPane(panelCheckBoxMonThi);
         scrollCheckBox.setPreferredSize(new Dimension(200, 120));
 
@@ -71,7 +68,6 @@ public class ManagerKhoiThiView extends JFrame {
         panelButton.add(btnThem);
         panelButton.add(btnXoa);
 
-        // ======== GỘP FORM + BUTTONS ==========
         JPanel panelForm = new JPanel(new BorderLayout());
         panelForm.add(panelInput, BorderLayout.CENTER);
         panelForm.add(panelButton, BorderLayout.SOUTH);
@@ -82,7 +78,6 @@ public class ManagerKhoiThiView extends JFrame {
         splitPane.setBottomComponent(panelForm);
         splitPane.setDividerLocation(250);
 
-        // ======== ADD TO FRAME ==========
         add(splitPane, BorderLayout.CENTER);
     }
 
@@ -91,7 +86,6 @@ public class ManagerKhoiThiView extends JFrame {
         return txtTenKhoi.getText().trim();
     }
 
-    // Lấy danh sách môn thi đã chọn (CheckBox)
     public List<MonThi> getSelectedMonThi() {
         List<MonThi> selected = new ArrayList<>();
         for (JCheckBox cb : monThiCheckBoxes) {
@@ -102,14 +96,18 @@ public class ManagerKhoiThiView extends JFrame {
         return selected;
     }
 
-    // Cập nhật danh sách CheckBox môn thi
+    public int getSelectedKhoiIndex() {
+        return tableKhoiThi.getSelectedRow();
+    }
+
+    // === SETTERS ===
     public void setMonThiList(List<MonThi> monThiList) {
         panelCheckBoxMonThi.removeAll();
         monThiCheckBoxes.clear();
 
         for (MonThi mt : monThiList) {
             JCheckBox cb = new JCheckBox(mt.getTenMon());
-            cb.putClientProperty("MonThi", mt); // Lưu MonThi kèm theo CheckBox
+            cb.putClientProperty("MonThi", mt);
             monThiCheckBoxes.add(cb);
             panelCheckBoxMonThi.add(cb);
         }
@@ -118,7 +116,6 @@ public class ManagerKhoiThiView extends JFrame {
         panelCheckBoxMonThi.repaint();
     }
 
-    // === BẢNG ===
     public void setKhoiThiTable(List<KhoiThi> khoiThiList) {
         tableModel.setRowCount(0);
         for (KhoiThi k : khoiThiList) {
@@ -130,10 +127,14 @@ public class ManagerKhoiThiView extends JFrame {
         }
     }
 
-    public int getSelectedKhoiIndex() {
-        return tableKhoiThi.getSelectedRow();
+    public void clearForm() {
+        txtTenKhoi.setText("");
+        for (JCheckBox cb : monThiCheckBoxes) {
+            cb.setSelected(false);
+        }
     }
 
+    // === LISTENERS ===
     public void addAddListener(ActionListener l) {
         btnThem.addActionListener(l);
     }
@@ -142,27 +143,16 @@ public class ManagerKhoiThiView extends JFrame {
         btnXoa.addActionListener(l);
     }
 
+    // === MESSAGES ===
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
 
-    public void addAddKhoiThiListener(ManagerKhoiThiController.AddKhoiThiListener addKhoiThiListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void addDeleteKhoiThiListener(ManagerKhoiThiController.DeleteKhoiThiListener deleteKhoiThiListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setKhoiThiObjectTable(List<String[]> collect) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void clearTenKhoi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public int getSelectedKhoiThiId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // === TEST ===
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            ManagerKhoiThiView view = new ManagerKhoiThiView();
+            view.setVisible(true);
+        });
     }
 }

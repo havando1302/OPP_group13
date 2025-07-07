@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author PC
@@ -47,7 +48,7 @@ public class ManagerView extends javax.swing.JFrame {
     private byte[] specialPerson_image=null;
     private byte[] image=null;
     private String [] columnNames = new String [] {
-          "STT", "Họ tên", "Ngày sinh", "Quê quán", "Khối thi", "SBD", "Trường", "Giới Tính" };
+          "STT", "SBD", "Họ tên", "Ngày sinh", "Giới tính", "Quê quán", "Trường", "Khối thi" };
     private String [] columnNames2 = new String [] {
         "<none>","Số lượng"};
     private Object data = new Object [][] {};
@@ -96,35 +97,28 @@ public class ManagerView extends javax.swing.JFrame {
     private String abbreviation(String name) {
         return name;
     }
-    
+
     public class MyRenderer extends DefaultTableCellRenderer {
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-            TableColumnModel columnModel=table.getColumnModel();
-            columnModel.getColumn(0).setPreferredWidth(10);
-            columnModel.getColumn(1).setPreferredWidth(150);
-            columnModel.getColumn(2).setPreferredWidth(10);
-            columnModel.getColumn(3).setPreferredWidth(270);
-            columnModel.getColumn(4).setPreferredWidth(50);
-            columnModel.getColumn(5).setPreferredWidth(80);
-            //columnModel.getColumn(0).setPreferredWidth(5);
-            JTableHeader header = table.getTableHeader();
-            header.setBackground(new Color(0, 0, 139));
-            header.setForeground(Color.WHITE);
-            header.setFont(new java.awt.Font("Times New Roman", 0, 18));
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-            if (!isSelected) {
-                if (row % 2 == 0) {
-                    c.setBackground(new Color(191, 239, 255));
-                } else {
-                    c.setBackground(new Color(135, 206, 250));
-                }
-            } else {
-                c.setBackground(new Color(193, 255, 193));
-            }
-
-            return c;
+public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+    JTableHeader header = table.getTableHeader();
+    header.setBackground(new Color(0, 0, 139));
+    header.setForeground(Color.WHITE);
+    header.setFont(new java.awt.Font("Times New Roman", 0, 18));
+    
+    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+    if (!isSelected) {
+        if (row % 2 == 0) {
+            c.setBackground(new Color(191, 239, 255));
+        } else {
+            c.setBackground(new Color(135, 206, 250));
         }
+    } else {
+        c.setBackground(new Color(193, 255, 193));
+    }
+    return c;
+}
+
     }
     
     public class MyRenderer2 extends DefaultTableCellRenderer {
@@ -234,7 +228,11 @@ public class ManagerView extends javax.swing.JFrame {
         tableSpecialPerson = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        SBD = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        Truong = new javax.swing.JTextField();
         ComboBoxGT = new javax.swing.JComboBox<>();
         FieldID = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -679,7 +677,7 @@ public class ManagerView extends javax.swing.JFrame {
         ComboBoxType.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         ComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<none>", "Khối tự nhiên", "Khối xã hội"}));
         jPanel1.add(ComboBoxType);
-        ComboBoxType.setBounds(930, 270, 260, 45);
+        ComboBoxType.setBounds(970, 180, 220, 45);
         ComboBoxType.setOpaque(false);
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -718,7 +716,7 @@ public class ManagerView extends javax.swing.JFrame {
         TextAreaAddress.setOpaque(false);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(930, 180, 260, 70);
+        jScrollPane2.setBounds(610, 170, 260, 70);
         jScrollPane2.setOpaque(false);
 
         FieldSum.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -738,7 +736,7 @@ public class ManagerView extends javax.swing.JFrame {
         jLabel6.setText("Khối thi:");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(840, 280, 130, 37);
+        jLabel6.setBounds(890, 190, 80, 37);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Họ và tên:");
@@ -771,43 +769,62 @@ public class ManagerView extends javax.swing.JFrame {
         tableSpecialPerson.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tableSpecialPerson.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
             }, columnNames
         ));
         tableSpecialPerson.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         tableSpecialPerson.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableSpecialPerson.setRowHeight(30);
         jScrollPane1.setViewportView(tableSpecialPerson);
-        tableSpecialPerson.removeColumn(tableSpecialPerson.getColumnModel().getColumn(6));
+        tableSpecialPerson.removeColumn(tableSpecialPerson.getColumnModel().getColumn(7));
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(180, 380, 1020, 270);
+        jScrollPane1.setBounds(180, 380, 1100, 270);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("Quê quán:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(830, 190, 90, 42);
+        jLabel4.setBounds(510, 180, 90, 42);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel7.setText("Giới Tính");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(590, 120, 100, 24);
 
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel16.setText("Số Báo Danh:");
+        jPanel1.add(jLabel16);
+        jLabel16.setBounds(200, 270, 130, 30);
+
+        SBD.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jPanel1.add(SBD);
+        SBD.setBounds(320, 260, 180, 40);
+
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("Ngày sinh:");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(200, 180, 90, 42);
+
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel17.setText("Trường:");
+        jPanel1.add(jLabel17);
+        jLabel17.setBounds(560, 270, 90, 30);
+
+        Truong.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jPanel1.add(Truong);
+        Truong.setBounds(650, 260, 280, 40);
 
         ComboBoxGT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<none>", "Nam", "Nữ"}));
         jPanel1.add(ComboBoxGT);
@@ -828,13 +845,13 @@ public class ManagerView extends javax.swing.JFrame {
 
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(-190, 0, 1640, 890);
+        jLabel9.setBounds(-180, 0, 1640, 890);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1207, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1278, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1028,80 +1045,137 @@ public class ManagerView extends javax.swing.JFrame {
      * 
      * @param list
      */
-    public void showListSpecialPersons(List<ThiSinh> list) {
-        int size = list.size();
-        // với bảng tableSpecialPerson có 6 cột, 
-        // khởi tạo mảng 2 chiều specialPersons, trong đó:
-        // số hàng: là kích thước của list specialPerson 
-        // số cột: là 7
-        Object [][] specialPersons = new Object[size][7];
-        for (int i = 0; i < size; i++) {
-            specialPersons[i][0] = list.get(i).getId();
-            specialPersons[i][1] = list.get(i).getName();
-            specialPersons[i][2] = fDate.format(list.get(i).getBirthday());
-            specialPersons[i][3] = list.get(i).getAddress();
-            specialPersons[i][5] = list.get(i).getType();
-            specialPersons[i][6] = list.get(i).getImage();
-        }
-        //jLabel1.setLayout(null);
-        tableSpecialPerson.getColumnModel().getColumn(0).setWidth(3);
-        tableSpecialPerson.setModel(new DefaultTableModel(specialPersons, columnNames));
-        tableSpecialPerson.removeColumn(tableSpecialPerson.getColumnModel().getColumn(6));
+  // === Hàm hiển thị danh sách và setup listener ===
+public void showListSpecialPersons(List<ThiSinh> list) {
+    int size = list.size();
+    Object[][] specialPersons = new Object[size][9]; // 8 cột hiển thị + 1 cột ảnh ẩn
+
+    for (int i = 0; i < size; i++) {
+        ThiSinh ts = list.get(i);
+        specialPersons[i][0] = ts.getId();
+        specialPersons[i][1] = ts.getSBD();
+        specialPersons[i][2] = ts.getName();
+        specialPersons[i][3] = ts.getBirthday() != null ? fDate.format(ts.getBirthday()) : "";
+        specialPersons[i][4] = ts.getGT();
+        specialPersons[i][5] = ts.getAddress();
+        specialPersons[i][6] = ts.getTruong();
+        specialPersons[i][7] = ts.getType();
+        specialPersons[i][8] = ts.getImage(); // Ảnh
     }
-    
-    public void showCountListSpecialPersons(List<ThiSinh> list) {
+
+    tableSpecialPerson.setModel(new DefaultTableModel(
+        specialPersons,
+        new String[] {
+            "STT", "SBD", "Họ tên", "Ngày sinh", "Giới tính", "Quê quán", "Trường", "Khối thi", "Ảnh"
+        }
+    ));
+
+    setupTableColumnWidth();
+
+    // ⚡ Ẩn cột ảnh
+    TableColumnModel tcm = tableSpecialPerson.getColumnModel();
+    if (tcm.getColumnCount() > 8) {
+        tcm.removeColumn(tcm.getColumn(8));
+    }
+
+    // Reset nút khi load list
+    btnEdit.setEnabled(false);
+    btnDelete.setEnabled(false);
+    btnAdd.setEnabled(true);
+    btnClear.setEnabled(false);
+}
+
+// === Hàm thiết lập chiều rộng cột ===
+private void setupTableColumnWidth() {
+    javax.swing.table.TableColumnModel columnModel = tableSpecialPerson.getColumnModel();
+    columnModel.getColumn(0).setPreferredWidth(30);   // STT
+    columnModel.getColumn(1).setPreferredWidth(50);   // SBD
+    columnModel.getColumn(2).setPreferredWidth(140);  // Họ tên
+    columnModel.getColumn(3).setPreferredWidth(80);   // Ngày sinh
+    columnModel.getColumn(4).setPreferredWidth(60);   // Giới tính
+    columnModel.getColumn(5).setPreferredWidth(150);  // Quê quán
+    columnModel.getColumn(6).setPreferredWidth(150);  // Trường
+    columnModel.getColumn(7).setPreferredWidth(80);   // Khối thi
+}
+
+// === Hàm fill thông tin khi chọn dòng ===
+public void fillSpecialPersonFromSelectedRow() {
+    int viewRow = tableSpecialPerson.getSelectedRow();
+    if (viewRow >= 0) {
+        int modelRow = tableSpecialPerson.convertRowIndexToModel(viewRow);
+        TableModel model = tableSpecialPerson.getModel();
+
+        FieldID.setText(String.valueOf(model.getValueAt(modelRow, 0)));
+        SBD.setText(String.valueOf(model.getValueAt(modelRow, 1)));
+        FieldName.setText(String.valueOf(model.getValueAt(modelRow, 2)));
+
+        try {
+            String dateStr = String.valueOf(model.getValueAt(modelRow, 3));
+            if (!dateStr.isEmpty()) {
+                BirthdayChooser.setDate(fDate.parse(dateStr));
+            } else {
+                BirthdayChooser.setDate(null);
+            }
+        } catch (Exception e) {
+            BirthdayChooser.setDate(null);
+            e.printStackTrace();
+        }
+
+        ComboBoxGT.setSelectedItem(String.valueOf(model.getValueAt(modelRow, 4)));
+        TextAreaAddress.setText(String.valueOf(model.getValueAt(modelRow, 5)));
+        Truong.setText(String.valueOf(model.getValueAt(modelRow, 6)));
+        ComboBoxType.setSelectedItem(String.valueOf(model.getValueAt(modelRow, 7)));
+
+        // Ảnh
+        specialPerson_image = null;
+        if (model.getColumnCount() > 8) {
+            specialPerson_image = (byte[]) model.getValueAt(modelRow, 8);
+        }
+
+        if (specialPerson_image != null) {
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(specialPerson_image)
+                    .getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+            lblImage.setIcon(imageIcon);
+        } else {
+            lblImage.setIcon(new ImageIcon("default-image.png"));
+        }
+
+        btnEdit.setEnabled(true);
+        btnDelete.setEnabled(true);
+        btnAdd.setEnabled(false);
+        btnClear.setEnabled(true);
+    }
+}
+
+
+public void showCountListSpecialPersons(List<ThiSinh> list) {
         int size = list.size();
         FieldSum.setText(String.valueOf(size));
-    }
-    /**
-     * điền thông tin của hàng được chọn từ bảng specialPerson 
-     * vào các trường tương ứng của specialPerson.
-     */
-    public void fillSpecialPersonFromSelectedRow() throws ParseException {
-        // lấy chỉ số của hàng được chọn 
-        int row = tableSpecialPerson.getSelectedRow();
-        if (row >= 0) {
-            FieldID.setText(tableSpecialPerson.getModel().getValueAt(row, 0).toString());
-            FieldName.setText(tableSpecialPerson.getModel().getValueAt(row, 1).toString());
-            BirthdayChooser.setDate(fDate.parse(tableSpecialPerson.getModel().getValueAt(row, 2).toString()));
-            TextAreaAddress.setText(tableSpecialPerson.getModel().getValueAt(row, 3).toString());
-            ComboBoxType.setSelectedItem(tableSpecialPerson.getModel().getValueAt(row, 5).toString());
-            ComboBoxGT.setSelectedItem(tableSpecialPerson.getModel().getValueAt(row, 4).toString());
-            //ImageIcon imageIcon=new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
-            //lblImage.setIcon((Icon) tableSpecialPerson.getModel().getValueAt(row, 6));
-            byte[] img=(byte[]) tableSpecialPerson.getModel().getValueAt(row, 6);
-            specialPerson_image=img;
-            ImageIcon imageIcon=new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
-            lblImage.setIcon(imageIcon);
-            // enable Edit and Delete buttons
-            btnEdit.setEnabled(true);
-            btnDelete.setEnabled(true);
-            // disable Add button
-            btnAdd.setEnabled(false);
-            btnClear.setEnabled(true);
-        }
     }
 
     /**
      * xóa thông tin specialPerson
      */
-    public void clearSpecialPersonInfo() {
-        FieldID.setText("");
-        FieldName.setText("");
-        BirthdayChooser.setDate(null);
-        TextAreaAddress.setText("");
-        //FieldOpeningDate.setText("");
-        lblImage.setIcon(new ImageIcon("default-image.png")); 
-        specialPerson_image=null;
-        ComboBoxType.setSelectedItem("<none>");
-        // disable Edit and Delete buttons
-        
-        ComboBoxGT.setSelectedItem("<none>");
-        btnEdit.setEnabled(false);
-        btnDelete.setEnabled(false);
-        // enable Add button
-        btnAdd.setEnabled(true);
-    }
+   public void clearSpecialPersonInfo() {
+    FieldID.setText("");
+    SBD.setText("");
+    FieldName.setText("");
+    BirthdayChooser.setDate(null);
+    TextAreaAddress.setText("");
+    Truong.setText("");
+    
+    ComboBoxGT.setSelectedItem("<none>");
+    ComboBoxType.setSelectedItem("<none>");
+
+    lblImage.setIcon(new ImageIcon("default-image.png"));
+    specialPerson_image = null;
+
+    // Reset nút bấm
+    btnEdit.setEnabled(false);
+    btnDelete.setEnabled(false);
+    btnAdd.setEnabled(true);
+    btnClear.setEnabled(false);
+}
     
     public void searchNameSpecialPersonInfo() {
         //FrameSearch = new ManagerView();
@@ -1131,51 +1205,66 @@ public class ManagerView extends javax.swing.JFrame {
      * @param specialPerson
      */
     public void showSpecialPerson(ThiSinh specialPerson) 
-    {
-         FieldID.setText("" + specialPerson.getId());
-        FieldName.setText(specialPerson.getName());
-        BirthdayChooser.setDate(specialPerson.getBirthday());
-        TextAreaAddress.setText(specialPerson.getAddress());
-        //FieldOpeningDate.setText("" + fDate.format(specialPerson.getOpeningDate()));
-        ComboBoxType.setSelectedItem(""+specialPerson.getType());
-        ComboBoxGT.setSelectedItem(""+specialPerson.getType());
-        // enable Edit and Delete buttons
-        byte[] img=specialPerson.getImage();
-        ImageIcon imageIcon=new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+{
+    FieldID.setText("" + specialPerson.getId());
+    SBD.setText(specialPerson.getSBD());  // ⚡ Thêm SBD
+    FieldName.setText(specialPerson.getName());
+    BirthdayChooser.setDate(specialPerson.getBirthday());
+    ComboBoxGT.setSelectedItem(specialPerson.getGT()); // ⚡ Giới tính
+    TextAreaAddress.setText(specialPerson.getAddress());
+    Truong.setText(specialPerson.getTruong()); // ⚡ Trường
+    ComboBoxType.setSelectedItem(specialPerson.getType()); // ⚡ Khối thi
+
+    // Ảnh
+    byte[] img = specialPerson.getImage();
+    if (img != null) {
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(img)
+            .getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
         lblImage.setIcon(imageIcon);
-        btnEdit.setEnabled(true);
-        btnDelete.setEnabled(true);
-        // disable Add button
-        btnAdd.setEnabled(false);
+    } else {
+        lblImage.setIcon(new ImageIcon("default-image.png"));
     }
+
+    btnEdit.setEnabled(true);
+    btnDelete.setEnabled(true);
+    btnAdd.setEnabled(false);
+    btnClear.setEnabled(true);
+}
+
     
     /**
      * lấy thông tin specialPerson
      * 
      * @return
      */
-    public ThiSinh getSpecialPersonInfo() {
-        // validate specialPerson
-        if (!validateName() || !validateYear() || !validateAddress() || !validateImage() || !validateType()) {
-            return null;
-        }
-        try {
-            ThiSinh specialPerson = new ThiSinh();
-            if (FieldID.getText() != null && !"".equals(FieldID.getText())) {
-                specialPerson.setId(Integer.parseInt(FieldID.getText()));
-            }
-            specialPerson.setName(capitalizeWords(FieldName.getText().trim()));
-            specialPerson.setBirthday(BirthdayChooser.getDate());
-            specialPerson.setAddress(capitalizeWords(TextAreaAddress.getText().trim()));
-            specialPerson.setType(ComboBoxType.getSelectedItem().toString().trim());
-            specialPerson.setImage(specialPerson_image);
-            return specialPerson;
-        } catch (Exception e) {
-            showMessage(e.getMessage());
-        }
+   public ThiSinh getSpecialPersonInfo() {
+    // Validate bắt buộc đủ field
+    if (!validateName() || !validateYear() || !validateAddress() || !validateImage() || !validateType()) {
         return null;
     }
-      
+    try {
+        ThiSinh specialPerson = new ThiSinh();
+
+        if (FieldID.getText() != null && !"".equals(FieldID.getText())) {
+            specialPerson.setId(Integer.parseInt(FieldID.getText()));
+        }
+
+        specialPerson.setSBD(SBD.getText().trim());  // ⚡ Lấy SBD
+        specialPerson.setName(capitalizeWords(FieldName.getText().trim()));
+        specialPerson.setBirthday(BirthdayChooser.getDate());
+        specialPerson.setGT(ComboBoxGT.getSelectedItem().toString().trim()); // ⚡ Giới tính
+        specialPerson.setAddress(capitalizeWords(TextAreaAddress.getText().trim()));
+        specialPerson.setTruong(capitalizeWords(Truong.getText().trim())); // ⚡ Trường
+        specialPerson.setType(ComboBoxType.getSelectedItem().toString().trim()); // ⚡ Khối thi
+        specialPerson.setImage(specialPerson_image);
+
+        return specialPerson;
+    } catch (Exception e) {
+        showMessage(e.getMessage());
+    }
+    return null;
+}
+
     private boolean validateName() {
         String name = FieldName.getText();
         if (name == null || "".equals(name.trim())) {
@@ -1486,10 +1575,12 @@ public class ManagerView extends javax.swing.JFrame {
     private javax.swing.JTextField FieldName;
     private javax.swing.JTextField FieldSearch;
     private javax.swing.JTextField FieldSum;
+    private javax.swing.JTextField SBD;
     private javax.swing.JScrollPane ScrollPaneStatistic;
     private javax.swing.JDialog SearchDialog;
     private javax.swing.JFrame StatisticView;
     private javax.swing.JTextArea TextAreaAddress;
+    private javax.swing.JTextField Truong;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancelDialog1;
     private javax.swing.JButton btnCancelSearch;
@@ -1516,6 +1607,8 @@ public class ManagerView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

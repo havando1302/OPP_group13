@@ -30,7 +30,10 @@ public class ThiSinh  implements Serializable
     private String type;
     private byte[] picture;
     private int id;
+    private String SBD;
     private String name;
+    private String GT;
+    private String Truong;
     private Date birthday;
     private String address;
     //private SimpleDateFormat fDate=new SimpleDateFormat("dd/MM/yyyy");
@@ -38,7 +41,7 @@ public class ThiSinh  implements Serializable
     {
         
     }
-    public ThiSinh(int id, String name, Date birthday, String address, String type, byte[] image) throws ParseException 
+    public ThiSinh(int id, String name,String SBD,String GT, Date birthday,String Truong, String address, String type, byte[] image) throws ParseException 
     {
         super();
         SimpleDateFormat fDate=new SimpleDateFormat("dd/MM/yyyy");
@@ -48,6 +51,9 @@ public class ThiSinh  implements Serializable
         this.address = address;
         this.type=type;
         this.picture=image;
+        this.GT = GT;
+        this.SBD = SBD;
+        this.Truong = Truong;
     }
     
     
@@ -55,7 +61,30 @@ public class ThiSinh  implements Serializable
     {
         return this.type;
     }
-
+     public String getGT() 
+    {
+        return this.GT;
+    }
+      public void setGT(String GT) 
+    {
+        this.GT = GT;
+    }
+      public String getSBD() 
+    {
+        return this.SBD;
+    }
+       public void setSBD(String SBD) 
+    {
+        this.SBD = SBD;
+    }
+       public String getTruong() 
+    {
+        return this.Truong;
+    }
+        public void setTruong(String Truong) 
+    {
+        this.Truong = Truong;
+    }
     public void setType(String type) 
     {
         this.type = type;

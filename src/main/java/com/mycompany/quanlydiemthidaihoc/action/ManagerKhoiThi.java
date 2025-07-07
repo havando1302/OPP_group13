@@ -69,6 +69,9 @@ public class ManagerKhoiThi {
             writeListKhoiThi();
         }
     }
+    public void deleteAt(int index) {
+    listKhoiThi.remove(index);
+}
 
     // Tìm theo tên khối thi
     public KhoiThi findByTenKhoi(String tenKhoi) {

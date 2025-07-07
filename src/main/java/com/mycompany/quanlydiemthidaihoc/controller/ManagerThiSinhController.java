@@ -256,11 +256,7 @@ public class ManagerThiSinhController
     {
         public void valueChanged(ListSelectionEvent e) 
         {
-            try {
-               ThiSinhView.fillSpecialPersonFromSelectedRow();
-            } catch (ParseException ex) {
-                Logger.getLogger(ManagerThiSinhController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ThiSinhView.fillSpecialPersonFromSelectedRow();
         }
     }
     
