@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MonThiList>
+    <MonThi>
+        <id>1</id>
+        <tenMon>Toán</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>2</id>
+        <tenMon>Văn</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>3</id>
+        <tenMon>Sử</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>5</id>
+        <tenMon>Lý</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>6</id>
+        <tenMon>vật lý</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>7</id>
+        <tenMon>Lý</tenMon>
+    </MonThi>
+</MonThiList>
