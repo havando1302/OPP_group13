@@ -48,7 +48,7 @@ public class ManagerView extends javax.swing.JFrame {
     private byte[] specialPerson_image=null;
     private byte[] image=null;
     private String [] columnNames = new String [] {
-          "STT", "SBD", "Họ tên", "Ngày sinh", "Giới tính", "Quê quán", "Trường", "Khối thi" };
+          "STT", "SBD", "Họ tên", "Ngày sinh", "Giới tính", "Quê quán", "Trường", "Khối thi","Ảnh"};
     private String [] columnNames2 = new String [] {
         "<none>","Số lượng"};
     private Object data = new Object [][] {};
@@ -769,26 +769,26 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         tableSpecialPerson.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tableSpecialPerson.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
+                {null, null, null, null, null, null, null, null,null},
             }, columnNames
         ));
         tableSpecialPerson.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         tableSpecialPerson.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableSpecialPerson.setRowHeight(30);
         jScrollPane1.setViewportView(tableSpecialPerson);
-        tableSpecialPerson.removeColumn(tableSpecialPerson.getColumnModel().getColumn(7));
+        tableSpecialPerson.removeColumn(tableSpecialPerson.getColumnModel().getColumn(8));
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(180, 380, 1100, 270);
@@ -1003,6 +1003,8 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
     {
         String lastImagePath = "";
         JFileChooser chooser=new JFileChooser(lastImagePath);
+        
+        
         chooser.setDialogTitle("Chọn ảnh");
         // Giới hạn chọn tệp đến các tệp hình ảnh
         chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
@@ -1063,7 +1065,8 @@ public void showListSpecialPersons(List<ThiSinh> list) {
         specialPersons[i][8] = ts.getImage(); // Ảnh
     }
 
-    tableSpecialPerson.setModel(new DefaultTableModel(
+    
+    tableSpecialPerson.setModel(new javax.swing.table.DefaultTableModel(
         specialPersons,
         new String[] {
             "STT", "SBD", "Họ tên", "Ngày sinh", "Giới tính", "Quê quán", "Trường", "Khối thi", "Ảnh"
@@ -1085,6 +1088,7 @@ public void showListSpecialPersons(List<ThiSinh> list) {
     btnClear.setEnabled(false);
 }
 
+
 // === Hàm thiết lập chiều rộng cột ===
 private void setupTableColumnWidth() {
     javax.swing.table.TableColumnModel columnModel = tableSpecialPerson.getColumnModel();
@@ -1097,7 +1101,10 @@ private void setupTableColumnWidth() {
     columnModel.getColumn(6).setPreferredWidth(150);  // Trường
     columnModel.getColumn(7).setPreferredWidth(80);   // Khối thi
 }
-
+public void showCountListSpecialPersons(List<ThiSinh> list) {
+        int size = list.size();
+        FieldSum.setText(String.valueOf(size));
+    }
 // === Hàm fill thông tin khi chọn dòng ===
 public void fillSpecialPersonFromSelectedRow() {
     int viewRow = tableSpecialPerson.getSelectedRow();
@@ -1147,12 +1154,6 @@ public void fillSpecialPersonFromSelectedRow() {
     }
 }
 
-
-public void showCountListSpecialPersons(List<ThiSinh> list) {
-        int size = list.size();
-        FieldSum.setText(String.valueOf(size));
-    }
-
     /**
      * xóa thông tin specialPerson
      */
@@ -1163,10 +1164,8 @@ public void showCountListSpecialPersons(List<ThiSinh> list) {
     BirthdayChooser.setDate(null);
     TextAreaAddress.setText("");
     Truong.setText("");
-    
     ComboBoxGT.setSelectedItem("<none>");
     ComboBoxType.setSelectedItem("<none>");
-
     lblImage.setIcon(new ImageIcon("default-image.png"));
     specialPerson_image = null;
 
@@ -1563,6 +1562,8 @@ public void showCountListSpecialPersons(List<ThiSinh> list) {
     public void addStatisticUnderListener(ActionListener listener){
         btnStatisticUnder.addActionListener(listener);
     }
+   
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser BirthdayChooser;

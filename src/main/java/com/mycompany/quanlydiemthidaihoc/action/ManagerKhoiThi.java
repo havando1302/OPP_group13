@@ -22,11 +22,17 @@ public class ManagerKhoiThi {
 
     // Đọc dữ liệu từ file XML
     public void reload() {
-        KhoiThiXML wrapper = FileUtils.readXMLFile(FILE_NAME, KhoiThiXML.class);
-        if (wrapper != null && wrapper.getKhoiThi() != null) {
+    Object obj = FileUtils.readXMLFile(FILE_NAME, KhoiThiXML.class);
+    if (obj instanceof KhoiThiXML) {
+        KhoiThiXML wrapper = (KhoiThiXML) obj;
+        if (wrapper.getKhoiThi() != null) {
             this.listKhoiThi = wrapper.getKhoiThi();
         }
+    } else {
+        System.out.println("❌ Không đọc được MonThiXML từ file: " + FILE_NAME);
     }
+}
+
 
     // Ghi dữ liệu vào file XML
     public void writeListKhoiThi() {

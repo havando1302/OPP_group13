@@ -18,13 +18,18 @@ public class ManagerMonThi {
 }
 
 
-  public void reload() {
-    MonThiXML wrapper = FileUtils.readXMLFile(FILE_NAME, MonThiXML.class);
-    if (wrapper != null && wrapper.getMonThi() != null) {
-        this.listMonThi = wrapper.getMonThi();
+ public void reload() {
+    Object obj = FileUtils.readXMLFile(FILE_NAME, MonThiXML.class);
+    if (obj instanceof MonThiXML) {
+        MonThiXML wrapper = (MonThiXML) obj;
+        if (wrapper.getMonThi() != null) {
+            this.listMonThi = wrapper.getMonThi();
+        }
+    } else {
+        System.out.println(" Không đọc được MonThiXML từ file: " + FILE_NAME);
     }
-   
 }
+
 
 
     public void writeListMonThi() {

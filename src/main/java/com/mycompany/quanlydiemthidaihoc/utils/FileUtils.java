@@ -1,6 +1,7 @@
 package com.mycompany.quanlydiemthidaihoc.utils;
 
 import java.io.File;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -8,25 +9,43 @@ import javax.xml.bind.Unmarshaller;
 
 public class FileUtils {
 
-    public static void writeXMLtoFile(String fileName, Object data) {
+    /**
+     * Chuyển đổi đối tượng object về định dạng XML
+     * Sau đo lưu vào fileName
+     * 
+     * @param fileName
+     * @param object
+     */
+    public static void writeXMLtoFile(String fileName, Object object) {
         try {
-            JAXBContext context = JAXBContext.newInstance(data.getClass());
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(data, new File(fileName));
+            // tạo đối tượng JAXB Context
+            JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
+            // Create đối tượng Marshaller
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // formating 
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            // lưu nội dung XML vào file
+            File xmlFile = new File(fileName);
+            jaxbMarshaller.marshal(object, xmlFile);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
-    public static <T> T readXMLFile(String fileName, Class<T> clazz) {
+    /**
+     * Đọc nội dung fileName, sau đó chuyển đổi nội dung của file 
+     * thành đối tượng có kiểu là clazz.
+     * 
+     * @param fileName
+     * @param clazz
+     * @return
+     */
+    public static Object readXMLFile(String fileName, Class<?> clazz) {
         try {
-            JAXBContext context = JAXBContext.newInstance(clazz);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            File file = new File(fileName);
-            if (file.exists()) {
-                return (T) unmarshaller.unmarshal(file);
-            }
+            File xmlFile = new File(fileName);
+            JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            return jaxbUnmarshaller.unmarshal(xmlFile);
         } catch (JAXBException e) {
             e.printStackTrace();
         }

@@ -62,13 +62,13 @@ public class ManagerThiSinhController
         view.addStatisticUnderListener(new StatisticClearListener());
     }
 
-    public void showManagerView() 
-    {
-        List<ThiSinh> specialPersonList = managerThiSinh.getListThiSinh();
-       ThiSinhView.setVisible(true);
-        ThiSinhView.showListSpecialPersons(specialPersonList);
-       ThiSinhView.showCountListSpecialPersons(specialPersonList);
-    }
+    public void showManagerView() {
+    List<ThiSinh> specialPersonList = managerThiSinh.getListThiSinh();
+    ThiSinhView.showListSpecialPersons(specialPersonList);
+    ThiSinhView.showCountListSpecialPersons(specialPersonList);
+    ThiSinhView.setVisible(true); 
+}
+
 
     class AddSpecialPersonListener implements ActionListener 
     {
@@ -287,4 +287,5 @@ public class ManagerThiSinhController
             //specialPersonView.showStatisticAgeSpecialPersons(managerSpecialPerson.getListSpecialPersons());
         }
     }
+    
 }
