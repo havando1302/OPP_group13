@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.quanlydiemthidaihoc.view;
+import com.mycompany.quanlydiemthidaihoc.action.ManagerKhoiThi;
+import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
+import com.mycompany.quanlydiemthidaihoc.entity.KhoiThiXML;
 import com.mycompany.quanlydiemthidaihoc.entity.ThiSinh;
 import com.raven.chart.Chart;
 import com.raven.chart.ModelChart;
@@ -20,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import javax.swing.*;
@@ -162,6 +166,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         }
         return sb.toString().trim();
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -675,7 +680,12 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         jLabel5.setBounds(870, 60, 50, 42);
 
         ComboBoxType.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        ComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<none>", "Khối tự nhiên", "Khối xã hội"}));
+        initComboBoxType();
+        ComboBoxType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxTypeActionPerformed(evt);
+            }
+        });
         jPanel1.add(ComboBoxType);
         ComboBoxType.setBounds(970, 180, 220, 45);
         ComboBoxType.setOpaque(false);
@@ -942,6 +952,10 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
     private void FieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FieldIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FieldIDActionPerformed
+
+    private void ComboBoxTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxTypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1482,6 +1496,21 @@ public void fillSpecialPersonFromSelectedRow() {
         return 0; // Hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
     }
 }
+    private void initComboBoxType() {
+    
+    ArrayList<KhoiThi> dsKhoi = KhoiThiXML.docFile("khoithi.xml");
+
+    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+    model.addElement("Tất cả");
+
+    for (KhoiThi khoi : dsKhoi) {
+        model.addElement(khoi.getTenKhoi());
+    }
+
+    ComboBoxType.setModel(model);  // đảm bảo bạn có biến ComboBoxType là JComboBox
+}
+
+
     
     private double ConvertToDouble(Object k)
     {

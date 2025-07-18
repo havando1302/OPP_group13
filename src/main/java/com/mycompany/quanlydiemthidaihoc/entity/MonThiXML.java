@@ -6,6 +6,10 @@ import java.util.List;
 
 @XmlRootElement(name = "MonThiList")
 public class MonThiXML {
+
+    public static List<String> docFile(String datamonthixml) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private List<MonThi> monThi;
 
     @XmlElement(name = "MonThi")

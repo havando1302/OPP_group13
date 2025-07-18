@@ -92,4 +92,11 @@ public class ManagerKhoiThi {
     public void delete(KhoiThi khoiThi) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    public void updateAt(int index, KhoiThi khoiThi) {
+    if (index >= 0 && index < listKhoiThi.size()) {
+        listKhoiThi.set(index, khoiThi);
+        writeListKhoiThi(); 
+    }
+}
+
 }

@@ -1,5 +1,6 @@
 package com.mycompany.quanlydiemthidaihoc.view;
 
+import com.mycompany.quanlydiemthidaihoc.controller.ManagerKhoiThiController;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
 import com.mycompany.quanlydiemthidaihoc.entity.MonThi;
 
@@ -16,9 +17,11 @@ public class ManagerKhoiThiView extends JFrame {
     private final JPanel panelCheckBoxMonThi;
     private final JTable tableKhoiThi;
     private final DefaultTableModel tableModel;
-    private final JButton btnThem, btnXoa;
+    private final JButton btnThem, btnXoa, btnSua;
 
     private final List<JCheckBox> monThiCheckBoxes = new ArrayList<>();
+
+    private List<KhoiThi> currentKhoiThiList = new ArrayList<>();
 
     public ManagerKhoiThiView() {
         setTitle("Quản lý Khối Thi");
@@ -63,9 +66,11 @@ public class ManagerKhoiThiView extends JFrame {
         // ======== BUTTONS ==========
         btnThem = new JButton("Thêm");
         btnXoa = new JButton("Xóa");
+        btnSua = new JButton("Sửa");
 
         JPanel panelButton = new JPanel();
         panelButton.add(btnThem);
+        panelButton.add(btnSua);
         panelButton.add(btnXoa);
 
         JPanel panelForm = new JPanel(new BorderLayout());
@@ -79,6 +84,13 @@ public class ManagerKhoiThiView extends JFrame {
         splitPane.setDividerLocation(250);
 
         add(splitPane, BorderLayout.CENTER);
+
+        // ======== Table selection listener ==========
+        tableKhoiThi.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting() && getSelectedKhoiIndex() >= 0) {
+                loadSelectedKhoiThiToForm();
+            }
+        });
     }
 
     // === GETTERS ===
@@ -100,6 +112,14 @@ public class ManagerKhoiThiView extends JFrame {
         return tableKhoiThi.getSelectedRow();
     }
 
+    public KhoiThi getSelectedKhoiThi() {
+        int index = getSelectedKhoiIndex();
+        if (index >= 0 && index < currentKhoiThiList.size()) {
+            return currentKhoiThiList.get(index);
+        }
+        return null;
+    }
+
     // === SETTERS ===
     public void setMonThiList(List<MonThi> monThiList) {
         panelCheckBoxMonThi.removeAll();
@@ -117,6 +137,7 @@ public class ManagerKhoiThiView extends JFrame {
     }
 
     public void setKhoiThiTable(List<KhoiThi> khoiThiList) {
+        currentKhoiThiList = khoiThiList;
         tableModel.setRowCount(0);
         for (KhoiThi k : khoiThiList) {
             String tenKhoi = k.getTenKhoi();
@@ -134,10 +155,23 @@ public class ManagerKhoiThiView extends JFrame {
         }
     }
 
+    private void loadSelectedKhoiThiToForm() {
+        KhoiThi selected = getSelectedKhoiThi();
+        if (selected != null) {
+            txtTenKhoi.setText(selected.getTenKhoi());
+            for (JCheckBox cb : monThiCheckBoxes) {
+                MonThi mt = (MonThi) cb.getClientProperty("MonThi");
+                cb.setSelected(selected.getMonThiList().contains(mt));
+            }
+        }
+    }
+
     // === LISTENERS ===
     public void addAddListener(ActionListener l) {
         btnThem.addActionListener(l);
     }
+
+    
 
     public void addDeleteListener(ActionListener l) {
         btnXoa.addActionListener(l);
@@ -155,4 +189,9 @@ public class ManagerKhoiThiView extends JFrame {
             view.setVisible(true);
         });
     }
+
+   public void addUpdateListener(ActionListener listener) {
+    btnSua.addActionListener(listener);
+}
+
 }

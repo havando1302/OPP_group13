@@ -16,9 +16,10 @@ public class ManagerKhoiThiController {
         this.khoiThiView = view;
         this.managerKhoiThi = manager;
 
-        // 👉 SỬ DỤNG HÀM CHUẨN TRONG VIEW
+        // Gắn sự kiện
         khoiThiView.addAddListener(new AddKhoiThiListener());
         khoiThiView.addDeleteListener(new DeleteKhoiThiListener());
+        khoiThiView.addUpdateListener(new UpdateKhoiThiListener()); // 🟡 THÊM NÚT SỬA
 
         loadKhoiThiTable();
     }
@@ -27,6 +28,7 @@ public class ManagerKhoiThiController {
         khoiThiView.setKhoiThiTable(managerKhoiThi.getListKhoiThi());
     }
 
+    // ✅ Thêm mới khối thi
     public class AddKhoiThiListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -53,6 +55,7 @@ public class ManagerKhoiThiController {
         }
     }
 
+    // ✅ Xoá khối thi
     public class DeleteKhoiThiListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -63,9 +66,42 @@ public class ManagerKhoiThiController {
             }
 
             managerKhoiThi.deleteAt(index);
+            loadKhoiThiTable();
+            khoiThiView.clearForm();
+            khoiThiView.showMessage("Xóa khối thi thành công!");
+        }
+    }
+
+    // ✅ Sửa khối thi
+    public class UpdateKhoiThiListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int index = khoiThiView.getSelectedKhoiIndex();
+            if (index == -1) {
+                khoiThiView.showMessage("Vui lòng chọn khối thi để sửa!");
+                return;
+            }
+
+            String tenKhoi = khoiThiView.getTenKhoi();
+            if (tenKhoi.isEmpty()) {
+                khoiThiView.showMessage("Tên khối thi không được để trống!");
+                return;
+            }
+
+            if (khoiThiView.getSelectedMonThi().isEmpty()) {
+                khoiThiView.showMessage("Vui lòng chọn ít nhất 1 môn thi!");
+                return;
+            }
+
+            KhoiThi khoiThi = managerKhoiThi.getListKhoiThi().get(index);
+            khoiThi.setTenKhoi(tenKhoi);
+            khoiThi.setMonThiList(khoiThiView.getSelectedMonThi());
+
+            managerKhoiThi.updateAt(index, khoiThi); // 🟡 Hàm update cần tồn tại trong ManagerKhoiThi
 
             loadKhoiThiTable();
-            khoiThiView.showMessage("Xóa khối thi thành công!");
+            khoiThiView.clearForm();
+            khoiThiView.showMessage("Cập nhật khối thi thành công!");
         }
     }
 }

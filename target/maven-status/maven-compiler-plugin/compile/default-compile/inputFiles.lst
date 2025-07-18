@@ -20,6 +20,7 @@ C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\myc
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\utils\FileUtils.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\AdminMainView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\CustomButton.java
+C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\KhoiThiView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\LoginView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ManagerKhoiThiView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ManagerMonThiView.java
@@ -27,7 +28,6 @@ C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\myc
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\RoleSelect.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\RoleSelectView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\StudentMainView.java
-C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ThiSinhAdmin.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\raven\chart\blankchart\BlankPlotChart.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\raven\chart\blankchart\BlankPlotChatRender.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\raven\chart\blankchart\NiceScale.java

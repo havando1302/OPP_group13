@@ -17,7 +17,7 @@ public class AdminController {
 
         adminView.addManageThiSinhListener(new OpenManagerThiSinh());
         adminView.addManageKhoiThiListener(new OpenManagerKhoiThi());
-        adminView.addManageMonThiListener(new OpenManagerMonThi()); // ✅ Mục mới
+        adminView.addManageMonThiListener(new OpenManagerMonThi()); 
     }
 
     public void showAdminView() {

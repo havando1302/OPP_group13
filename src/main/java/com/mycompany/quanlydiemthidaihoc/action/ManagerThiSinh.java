@@ -131,10 +131,14 @@ public class ManagerThiSinh
             if (listSpecialPersons.get(i).getId() == specialPerson.getId()) 
             {
                 listSpecialPersons.get(i).setName(specialPerson.getName());
+                listSpecialPersons.get(i).setSBD(specialPerson.getSBD());
                 listSpecialPersons.get(i).setBirthday(specialPerson.getBirthday());
                 listSpecialPersons.get(i).setAddress(specialPerson.getAddress());
                 listSpecialPersons.get(i).setType(specialPerson.getType());
+                listSpecialPersons.get(i).setGT(specialPerson.getGT());
+                listSpecialPersons.get(i).setTruong(specialPerson.getTruong());
                 listSpecialPersons.get(i).setImage(specialPerson.getImage());
+                
                 writeListSpecialPersons(listSpecialPersons);
                 break;
             }
