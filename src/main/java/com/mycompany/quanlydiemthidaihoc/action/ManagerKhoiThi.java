@@ -2,101 +2,101 @@ package com.mycompany.quanlydiemthidaihoc.action;
 
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThiXML;
-import com.mycompany.quanlydiemthidaihoc.entity.MonThi;
 import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
 
-
+import javax.swing.*;
+import java.awt.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerKhoiThi {
-    private static final String FILE_NAME = "KhoiThi.xml";
+    private static final String FILE_NAME = "khoithi.xml";
     private List<KhoiThi> listKhoiThi;
-    private ManagerMonThi managerMonThi;
+    private Component parentComponent;
 
     public ManagerKhoiThi() {
-        this.managerMonThi = new ManagerMonThi();
-        this.listKhoiThi = new ArrayList<>();
-        reload();
-    }
-
-    // Đọc dữ liệu từ file XML
-    public void reload() {
-    Object obj = FileUtils.readXMLFile(FILE_NAME, KhoiThiXML.class);
-    if (obj instanceof KhoiThiXML) {
-        KhoiThiXML wrapper = (KhoiThiXML) obj;
-        if (wrapper.getKhoiThi() != null) {
-            this.listKhoiThi = wrapper.getKhoiThi();
+        this.listKhoiThi = readListKhoiThi();
+        if (listKhoiThi == null) {
+            listKhoiThi = new ArrayList<>();
         }
-    } else {
-        System.out.println("❌ Không đọc được MonThiXML từ file: " + FILE_NAME);
-    }
-}
-
-
-    // Ghi dữ liệu vào file XML
-    public void writeListKhoiThi() {
-        KhoiThiXML wrapper = new KhoiThiXML();
-        wrapper.setKhoiThi(this.listKhoiThi);
-        FileUtils.writeXMLtoFile(FILE_NAME, wrapper);
     }
 
-    // Trả về danh sách khối thi
+    // Đọc danh sách khối thi từ XML
+    public List<KhoiThi> readListKhoiThi() {
+        KhoiThiXML khoiThiXML = (KhoiThiXML) FileUtils.readXMLFile(FILE_NAME, KhoiThiXML.class);
+        if (khoiThiXML != null) {
+            return khoiThiXML.getKhoiThi();
+        }
+        return new ArrayList<>();
+    }
+
+    // Ghi danh sách khối thi ra file XML
+    public void writeListKhoiThi(List<KhoiThi> khoiThis) {
+        KhoiThiXML khoiThiXML = new KhoiThiXML();
+        khoiThiXML.setKhoiThi(khoiThis);
+        FileUtils.writeXMLtoFile(FILE_NAME, khoiThiXML);
+    }
+
+    // Thêm khối thi mới
+    public void add(KhoiThi khoiThi) {
+        int maxId = 0;
+        for (KhoiThi k : listKhoiThi) {
+            if (k.getId() > maxId) {
+                maxId = k.getId();
+            }
+        }
+        khoiThi.setId(maxId + 1);
+        listKhoiThi.add(khoiThi);
+        writeListKhoiThi(listKhoiThi);
+    }
+
+    // Cập nhật thông tin khối thi (sửa)
+    public void edit(KhoiThi khoiThi) throws ParseException {
+        for (int i = 0; i < listKhoiThi.size(); i++) {
+            if (listKhoiThi.get(i).getId() == khoiThi.getId()) {
+                listKhoiThi.set(i, khoiThi); // Cập nhật toàn bộ đối tượng
+                writeListKhoiThi(listKhoiThi);
+                break;
+            }
+        }
+    }
+
+    // Xóa khối thi
+    public boolean delete(KhoiThi khoiThi) {
+        for (int i = 0; i < listKhoiThi.size(); i++) {
+            if (listKhoiThi.get(i).getId() == khoiThi.getId()) {
+                listKhoiThi.remove(i);
+                writeListKhoiThi(listKhoiThi);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Tìm kiếm khối thi theo tên gần đúng (case-insensitive)
+    public List<KhoiThi> searchKhoiThiByTenKhoi(String keyword) {
+        List<KhoiThi> result = new ArrayList<>();
+        for (KhoiThi khoi : listKhoiThi) {
+            if (khoi.getTenKhoi().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(khoi);
+            }
+        }
+        return result;
+    }
+
+    // Trả về danh sách khối thi hiện có
     public List<KhoiThi> getListKhoiThi() {
         return listKhoiThi;
     }
 
-    // Trả về danh sách môn thi (dành cho checkbox hoặc combobox)
-    public List<MonThi> getListMonThi() {
-        return managerMonThi.getListMonThi();
+    // Hiển thị thông báo
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(parentComponent, message);
     }
 
-    // Thêm khối thi
-    public void add(KhoiThi khoi) {
-        if (listKhoiThi == null) {
-            listKhoiThi = new ArrayList<>();
-        }
-        listKhoiThi.add(khoi);
-        writeListKhoiThi();
+    // Cho phép set component hiển thị thông báo
+    public void setParentComponent(Component parentComponent) {
+        this.parentComponent = parentComponent;
     }
-
-    // Sửa khối thi theo vị trí
-    public void edit(int index, KhoiThi khoi) {
-        if (index >= 0 && index < listKhoiThi.size()) {
-            listKhoiThi.set(index, khoi);
-            writeListKhoiThi();
-        }
-    }
-
-    // Xóa khối thi theo vị trí
-    public void delete(int index) {
-        if (index >= 0 && index < listKhoiThi.size()) {
-            listKhoiThi.remove(index);
-            writeListKhoiThi();
-        }
-    }
-    public void deleteAt(int index) {
-    listKhoiThi.remove(index);
-}
-
-    // Tìm theo tên khối thi
-    public KhoiThi findByTenKhoi(String tenKhoi) {
-        for (KhoiThi k : listKhoiThi) {
-            if (k.getTenKhoi().equalsIgnoreCase(tenKhoi)) {
-                return k;
-            }
-        }
-        return null;
-    }
-
-    public void delete(KhoiThi khoiThi) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    public void updateAt(int index, KhoiThi khoiThi) {
-    if (index >= 0 && index < listKhoiThi.size()) {
-        listKhoiThi.set(index, khoiThi);
-        writeListKhoiThi(); 
-    }
-}
-
 }

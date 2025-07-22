@@ -1,19 +1,42 @@
 package com.mycompany.quanlydiemthidaihoc.entity;
 
 import java.util.ArrayList;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class KhoiThi {
+    private int id;
     private String tenKhoi;
     private List<MonThi> monThiList;
 
-    public KhoiThi() {}
+  
+    public KhoiThi() {
+        this.monThiList = new ArrayList<>();
+    }
+
+    public KhoiThi(Integer id, String tenKhoi) {
+        this.id = id;
+        this.tenKhoi = tenKhoi;
+    }
 
     public KhoiThi(String tenKhoi, List<MonThi> monThiList) {
         this.tenKhoi = tenKhoi;
         this.monThiList = monThiList;
+    }
+
+    public KhoiThi(int id, String tenKhoi, List<MonThi> monThiList) {
+        this.id = id;
+        this.tenKhoi = tenKhoi;
+        this.monThiList = monThiList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTenKhoi() {
@@ -31,33 +54,9 @@ public class KhoiThi {
     public void setMonThiList(List<MonThi> monThiList) {
         this.monThiList = monThiList;
     }
+
     @Override
     public String toString() {
         return tenKhoi;
     }
-
-    public Object getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public CharSequence[] getMonThi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setMonThi(ArrayList<String> arrayList) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setTenKhoiThi(String capitalizeWords) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Object getTenKhoiThi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

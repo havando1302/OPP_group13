@@ -4,6 +4,8 @@
  */
 package com.mycompany.quanlydiemthidaihoc.view;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
+import com.mycompany.quanlydiemthidaihoc.entity.MonThi;
+import com.mycompany.quanlydiemthidaihoc.entity.MonThiXML;
 import com.raven.chart.Chart;
 import com.raven.chart.ModelChart;
 import java.awt.event.ActionListener;
@@ -20,10 +22,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -45,13 +49,17 @@ public class KhoiThiView extends javax.swing.JFrame {
         "STT", "Tên Khối Thi", "Môn Thi"};
     private SimpleDateFormat fDate=new SimpleDateFormat("dd/MM/yyyy");
     FlowLayout flowLayout = new FlowLayout();
+    private List<KhoiThi> listKhoiThi;
     public KhoiThiView() {
         initComponents();
+        monThiPanel.setLayout(new BoxLayout(monThiPanel, BoxLayout.Y_AXIS)); 
+        loadMonThiCheckBoxes(); 
         btnAdd.setEnabled(true);
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
         btnSearch.setEnabled(true);
         tableKhoiThi.setDefaultRenderer(Object.class, new KhoiThiView.MyRenderer());
+       
     }
     
     private static Image getCircleImage(Image image) {
@@ -77,9 +85,62 @@ public class KhoiThiView extends javax.swing.JFrame {
         return imageIcon;
     }
 
-    private KhoiThi findResidentByID(List<KhoiThi> list, int residentID) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  private KhoiThi findKhoiThiByTen(List<KhoiThi> list, String tenKhoi) {
+    for (KhoiThi khoi : list) {
+        if (khoi.getTenKhoi().equalsIgnoreCase(tenKhoi)) {
+            return khoi;
+        }
     }
+    return null; // Không tìm thấy
+}
+
+
+ public KhoiThi getKhoiThiInfo() {
+    int selectedRow = tableKhoiThi.getSelectedRow();
+
+    // Nếu đang thêm mới, thì ID có thể tự sinh, bạn cho id = -1 hoặc bỏ qua.
+    int id = -1;
+    if (selectedRow != -1) {
+        id = (int) tableKhoiThi.getValueAt(selectedRow, 0);
+    }
+
+    String tenKhoi = FieldName.getText().trim();
+
+    if (tenKhoi.isEmpty()) {
+        throw new IllegalArgumentException("Vui lòng nhập tên khối thi.");
+    }
+
+    List<MonThi> selectedMonThis = new ArrayList<>();
+
+    // Duyệt qua tất cả checkbox trong monThiPanel
+    for (Component comp : monThiPanel.getComponents()) {
+        if (comp instanceof JCheckBox) {
+            JCheckBox checkBox = (JCheckBox) comp;
+            if (checkBox.isSelected()) {
+                String tenMon = checkBox.getText();
+                selectedMonThis.add(new MonThi(tenMon));
+            }
+        }
+    }
+
+    return new KhoiThi(id, tenKhoi, selectedMonThis);
+}
+
+
+
+    private KhoiThi findKhoiThiByID(List<KhoiThi> list, int id) {
+    for (KhoiThi khoi : list) {
+        if (Objects.equals(khoi.getId(), id))
+ {
+            return khoi;
+        }
+    }
+    return null; // Không tìm thấy
+}
+
+
+
+
     
     public class MyRenderer extends DefaultTableCellRenderer {
         @Override
@@ -179,10 +240,12 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKhoiThi = new javax.swing.JTable();
+        FieldID = new javax.swing.JTextField();
         FieldName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        FieldID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        monThiPanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
 
         SearchDialog.setResizable(false);
@@ -423,23 +486,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableKhoiThi);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(240, 420, 1030, 260);
-
-        FieldName.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        FieldName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 102)));
-        FieldName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FieldNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(FieldName);
-        FieldName.setBounds(400, 200, 250, 40);
-        FieldName.setOpaque(false);
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel5.setText("Tên Khối  Thi");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(270, 200, 120, 40);
+        jScrollPane1.setBounds(240, 440, 1030, 260);
 
         FieldID.setEditable(false);
         FieldID.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -455,16 +502,51 @@ public class KhoiThiView extends javax.swing.JFrame {
         FieldID.setOpaque(false);
         FieldID.setVisible(false);
 
+        FieldName.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        FieldName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 102)));
+        FieldName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FieldNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(FieldName);
+        FieldName.setBounds(490, 130, 250, 40);
+        FieldName.setOpaque(false);
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel5.setText("Tên Khối  Thi");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(290, 130, 120, 40);
+
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("<html>Quản lý Khối Thi<br> ");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(620, 0, 300, 80);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel1.setText("Chọn môn Thi");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(290, 260, 140, 30);
+
+        javax.swing.GroupLayout monThiPanelLayout = new javax.swing.GroupLayout(monThiPanel);
+        monThiPanel.setLayout(monThiPanelLayout);
+        monThiPanelLayout.setHorizontalGroup(
+            monThiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+        monThiPanelLayout.setVerticalGroup(
+            monThiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 160, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(monThiPanel);
+        monThiPanel.setBounds(490, 260, 110, 160);
+
         jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(-30, 0, 1640, 890);
+        jLabel9.setBounds(-30, -30, 1640, 890);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -577,86 +659,191 @@ public class KhoiThiView extends javax.swing.JFrame {
     }
     
  
-      private boolean validateName() {
-        String name = FieldName.getText();
-        if (name == null || "".equals(name.trim())) {
-            FieldName.requestFocus();
-            showMessage("Họ và tên không được trống.");
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
-   
-    
-   
-    
-    public void showListResidents(List<KhoiThi> list) {
-        int size = list.size();
-        Object [][] residents = new Object[size][7];
-        for (int i = 0; i < size; i++) {
-            residents[i][0] = list.get(i).getId();
-            residents[i][1] = list.get(i).getTenKhoiThi();
-        }
-        //jLabel1.setLayout(null);
-        tableKhoiThi.getColumnModel().getColumn(0).setWidth(3);
-        tableKhoiThi.setModel(new DefaultTableModel(residents, columnNames));
-        //tableResident.removeColumn(tableResident.getColumnModel().getColumn(6));
-    }
-    
-    
-    public void showResidents(KhoiThi resident) 
-    {
-       
-        FieldName.setText((String) resident.getTenKhoiThi());
-        
-        // enable Edit and Delete buttons
-        btnEdit.setEnabled(true);
-        btnDelete.setEnabled(true);
-        // disable Add button
-        btnAdd.setEnabled(false);
-        btnClear.setEnabled(true);
-    }
-    
-    public void fillResidentFromSelectedRow(List<KhoiThi> list) throws ParseException {
-        // lấy chỉ số của hàng được chọn 
-        int row = tableKhoiThi.getSelectedRow();
-        if (row >= 0) {
-            int residentID = Integer.parseInt(tableKhoiThi.getModel().getValueAt(row, 0).toString());
-           KhoiThi selectedResident = findResidentByID(list, residentID);
+    public void showListKhoiThi(List<KhoiThi> list) {
+    if (list == null) return; 
 
-            if (selectedResident != null) {
-                FieldID.setText(String.valueOf(selectedResident.getId()));
-                FieldName.setText((String) selectedResident.getTenKhoiThi());
-                // enable Edit and Delete buttons
+    int size = list.size();
+    Object[][] data = new Object[size][3];
+
+    for (int i = 0; i < size; i++) {
+        KhoiThi khoi = list.get(i);
+
+        // Cột 0: ID
+        data[i][0] = khoi.getId();
+
+        // Cột 1: Tên khối
+        data[i][1] = khoi.getTenKhoi();
+
+        // Cột 2: Danh sách môn thi (ghép chuỗi)
+        List<MonThi> monThiList = khoi.getMonThiList();
+        StringBuilder monThiNames = new StringBuilder();
+
+        if (monThiList != null && !monThiList.isEmpty()) {
+            for (int j = 0; j < monThiList.size(); j++) {
+                monThiNames.append(monThiList.get(j).getTenMon());
+                if (j < monThiList.size() - 1) {
+                    monThiNames.append(", ");
+                }
+            }
+        } else {
+            monThiNames.append("Không có môn");
+        }
+
+        data[i][2] = monThiNames.toString();
+    }
+
+   
+    DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; 
+        }
+    };
+
+    tableKhoiThi.setModel(model);
+    tableKhoiThi.getColumnModel().getColumn(0).setPreferredWidth(30); 
+    tableKhoiThi.getColumnModel().getColumn(1).setPreferredWidth(100); 
+    tableKhoiThi.getColumnModel().getColumn(2).setPreferredWidth(200); 
+}
+
+
+    
+    
+   public void showKhoiThi(KhoiThi khoi) {
+    
+    FieldName.setText(khoi.getTenKhoi());
+
+    
+    for (Component comp : monThiPanel.getComponents()) {
+        if (comp instanceof JCheckBox) {
+            JCheckBox checkBox = (JCheckBox) comp;
+            checkBox.setSelected(false); // reset tất cả
+        }
+    }
+
+    
+    List<MonThi> monThiList = khoi.getMonThiList();
+    for (MonThi mon : monThiList) {
+        for (Component comp : monThiPanel.getComponents()) {
+            if (comp instanceof JCheckBox) {
+                JCheckBox checkBox = (JCheckBox) comp;
+                if (checkBox.getText().equalsIgnoreCase(mon.getTenMon())) {
+                    checkBox.setSelected(true);
+                }
+            }
+        }
+    }
+
+   
+    btnEdit.setEnabled(true);
+    btnDelete.setEnabled(true);
+    btnAdd.setEnabled(false);
+    btnClear.setEnabled(true);
+}
+
+    
+ public void fillKhoiThiFromSelectedRow(List<KhoiThi> list) throws ParseException {
+    int row = tableKhoiThi.getSelectedRow();
+
+    if (row >= 0) {
+        Object idObject = tableKhoiThi.getModel().getValueAt(row, 0);
+
+        if (idObject != null) {
+            int khoiID = Integer.parseInt(idObject.toString());
+            KhoiThi selectedKhoi = findKhoiThiByID(list, khoiID);
+
+            if (selectedKhoi != null) {
+                // Gán thông tin cho text field
+                FieldID.setText(String.valueOf(selectedKhoi.getId()));
+                FieldName.setText(selectedKhoi.getTenKhoi());
+
+                // Reset tất cả checkbox
+                for (Component comp : monThiPanel.getComponents()) {
+                    if (comp instanceof JCheckBox) {
+                        ((JCheckBox) comp).setSelected(false);
+                    }
+                }
+
+                // Tích lại checkbox các môn thi đã chọn
+                List<MonThi> monThiList = selectedKhoi.getMonThiList();
+                for (MonThi mon : monThiList) {
+                    for (Component comp : monThiPanel.getComponents()) {
+                        if (comp instanceof JCheckBox) {
+                            JCheckBox checkBox = (JCheckBox) comp;
+                            if (checkBox.getText().equalsIgnoreCase(mon.getTenMon())) {
+                                checkBox.setSelected(true);
+                            }
+                        }
+                    }
+                }
+
+                // Cập nhật trạng thái nút
                 btnEdit.setEnabled(true);
                 btnDelete.setEnabled(true);
-                // disable Add button
                 btnAdd.setEnabled(false);
                 btnClear.setEnabled(true);
             }
         }
     }
-    
-    public void fillResidentFromSelectedRow() throws ParseException {
-        // lấy chỉ số của hàng được chọn 
-        int row = tableKhoiThi.getSelectedRow();
-        if (row >= 0) {
-            FieldName.setText(tableKhoiThi.getModel().getValueAt(row, 1).toString());  
-            // enable Edit and Delete buttons
-            btnEdit.setEnabled(true);
-            btnDelete.setEnabled(true);
-            // disable Add button
-            btnAdd.setEnabled(false);
-            btnClear.setEnabled(true);
-        }
-    }
+}
+
 
  
     
-    public void clearResidentInfo() {
+   public void fillKhoiThiFromSelectedRow() throws ParseException {
+    int row = tableKhoiThi.getSelectedRow();
+
+    if (row >= 0) {
+        // Lấy ID khối thi từ cột 0
+        Object idObject = tableKhoiThi.getModel().getValueAt(row, 0);
+        if (idObject != null) {
+            int khoiID = Integer.parseInt(idObject.toString());
+
+            // Sử dụng danh sách khối thi đang hiển thị
+            List<KhoiThi> list = this.listKhoiThi; // hoặc gọi từ controller nếu bạn có getter
+
+            KhoiThi selectedKhoi = findKhoiThiByID(list, khoiID);
+
+            if (selectedKhoi != null) {
+                FieldID.setText(String.valueOf(selectedKhoi.getId()));
+                FieldName.setText(selectedKhoi.getTenKhoi());
+
+                // Reset checkbox
+                for (Component comp : monThiPanel.getComponents()) {
+                    if (comp instanceof JCheckBox) {
+                        ((JCheckBox) comp).setSelected(false);
+                    }
+                }
+
+                // Tích lại các checkbox đúng với môn thi trong khối thi
+                List<MonThi> monThiList = selectedKhoi.getMonThiList();
+                if (monThiList != null) {
+                    for (MonThi mon : monThiList) {
+                        for (Component comp : monThiPanel.getComponents()) {
+                            if (comp instanceof JCheckBox) {
+                                JCheckBox checkBox = (JCheckBox) comp;
+                                if (checkBox.getText().equalsIgnoreCase(mon.getTenMon())) {
+                                    checkBox.setSelected(true);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                btnEdit.setEnabled(true);
+                btnDelete.setEnabled(true);
+                btnAdd.setEnabled(false);
+                btnClear.setEnabled(true);
+            }
+        }
+    }
+}
+
+
+
+ 
+    
+    public void clearKhoiThiInfo() {
         FieldID.setText("");
         FieldName.setText("");
         // disable Edit and Delete buttons
@@ -667,30 +854,43 @@ public class KhoiThiView extends javax.swing.JFrame {
     }
     
    
-    public void SearchResidentInfo() {
+    public void SearchKhoiThiInfo() {
         //FrameSearch = new ManagerView();
         SearchDialog.setVisible(true);
     }
     
-  
+  private void loadMonThiCheckBoxes() {
+    List<MonThi> listMonThi = MonThiXML.readFromFile("monthi.xml");
+    monThiPanel.removeAll(); // Xóa hết nếu đã có
+
+    for (MonThi mt : listMonThi) {
+        JCheckBox checkBox = new JCheckBox(mt.getTenMon());
+        monThiPanel.add(checkBox);
+    }
+
+    monThiPanel.revalidate();
+    monThiPanel.repaint();
+}
+
+
     
    
     
     
     
     
-    public void searchResidentInfo() {
+    public void searchKhoiThiInfo() {
         //FrameSearch = new ManagerView();
         SearchDialog.setVisible(true);
     }
     
-    public void cancelDialogSearchResidentInfo() {
+    public void cancelDialogSearchKhoiThiInfo() {
         //FrameSearch = new ManagerView();
         SearchDialog.setVisible(false);
     }
     
     
-    public void cancelSearchResident()
+    public void cancelSearchKhoiThi()
     {
         String id=FieldID.getText();
         btnCancelSearch.setEnabled(false);
@@ -732,15 +932,15 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnResidentUndo.addActionListener(listener);
     }
     
-    public void addAddResidentListener(ActionListener listener) {
+    public void addAddKhoiThiListener(ActionListener listener) {
         btnAdd.addActionListener(listener);
     }
     
-    public void addListResidentSelectionListener(ListSelectionListener listener) {
+    public void addListKhoiThiSelectionListener(ListSelectionListener listener) {
         tableKhoiThi.getSelectionModel().addListSelectionListener(listener);
     }
     
-    public void addEditResidentListener(ActionListener listener) {
+    public void addEditKhoiThiListener(ActionListener listener) {
         btnEdit.addActionListener(listener);
     }
     
@@ -748,7 +948,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnClear.addActionListener(listener);
     }
     
-    public void addDeleteSpecialPersonListener(ActionListener listener) {
+    public void addDeleteKhoiThiListener(ActionListener listener) {
         btnDelete.addActionListener(listener);
     }
     
@@ -760,7 +960,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnSearchDialog.addActionListener(listener);
     }
     
-    public void addCancelSearchResidentListener(ActionListener listener){
+    public void addCancelSearchListener(ActionListener listener){
         btnCancelSearch.addActionListener(listener);
     }
     
@@ -783,6 +983,7 @@ public class KhoiThiView extends javax.swing.JFrame {
     private javax.swing.JButton btnResidentUndo;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearchDialog;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel20;
@@ -794,6 +995,7 @@ public class KhoiThiView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel monThiPanel;
     private javax.swing.JTable tableKhoiThi;
     // End of variables declaration//GEN-END:variables
 }

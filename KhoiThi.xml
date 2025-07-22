@@ -1,33 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <KhoiThiXML>
     <KhoiThi>
+        <id>1</id>
         <monThiList>
-            <id>1</id>
+            <id>0</id>
             <tenMon>Toán</tenMon>
         </monThiList>
         <monThiList>
-            <id>2</id>
+            <id>0</id>
             <tenMon>Văn</tenMon>
         </monThiList>
         <monThiList>
-            <id>5</id>
+            <id>0</id>
             <tenMon>Lý</tenMon>
         </monThiList>
-        <tenKhoi>Khoa học xã</tenKhoi>
+        <monThiList>
+            <id>0</id>
+            <tenMon>vật lý</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>HAHA</tenMon>
+        </monThiList>
+        <tenKhoi>Khoa học xã hội</tenKhoi>
     </KhoiThi>
     <KhoiThi>
+        <id>2</id>
         <monThiList>
-            <id>1</id>
+            <id>0</id>
             <tenMon>Toán</tenMon>
         </monThiList>
         <monThiList>
-            <id>2</id>
-            <tenMon>Văn</tenMon>
+            <id>0</id>
+            <tenMon>Sử</tenMon>
         </monThiList>
         <monThiList>
-            <id>5</id>
+            <id>0</id>
             <tenMon>Lý</tenMon>
         </monThiList>
-        <tenKhoi>Khoa học xã</tenKhoi>
+        <tenKhoi>Khoa học tự nhiên</tenKhoi>
+    </KhoiThi>
+    <KhoiThi>
+        <id>3</id>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Toán</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Văn</tenMon>
+        </monThiList>
+        <tenKhoi>A01</tenKhoi>
     </KhoiThi>
 </KhoiThiXML>

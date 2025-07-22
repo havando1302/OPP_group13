@@ -13,6 +13,10 @@ public class MonThi {
         this.id = id;
         this.tenMon = tenMon;
     }
+    public MonThi(String tenMon) {
+    this.tenMon = tenMon;
+}
+
 
     public int getId() {
         return id;

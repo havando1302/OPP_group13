@@ -12,10 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "KhoiThiXML")
 public class KhoiThiXML {
 
-    public static void ghiFile(String khoithixml, ArrayList<KhoiThi> dsKhoi) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     private List<KhoiThi> khoiThi;
 
     @XmlElement(name = "KhoiThi")

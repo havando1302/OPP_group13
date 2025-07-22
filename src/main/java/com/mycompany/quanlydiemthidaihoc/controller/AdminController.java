@@ -3,7 +3,7 @@ package com.mycompany.quanlydiemthidaihoc.controller;
 import com.mycompany.quanlydiemthidaihoc.action.ManagerKhoiThi;
 import com.mycompany.quanlydiemthidaihoc.view.AdminMainView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerView;
-import com.mycompany.quanlydiemthidaihoc.view.ManagerKhoiThiView;
+import com.mycompany.quanlydiemthidaihoc.view.KhoiThiView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerMonThiView;
 
 import java.awt.event.ActionEvent;
@@ -34,9 +34,9 @@ public class AdminController {
 
    class OpenManagerKhoiThi implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-        ManagerKhoiThiView khoiThiView = new ManagerKhoiThiView();
+        KhoiThiView khoiThiView = new KhoiThiView();
         ManagerKhoiThi managerKhoiThi = new ManagerKhoiThi(); // Lấy dữ liệu từ XML
-        new ManagerKhoiThiController(khoiThiView, managerKhoiThi);
+        ManagerKhoiThiController managerKhoiThiController = new ManagerKhoiThiController(khoiThiView, managerKhoiThi);
 
         khoiThiView.setVisible(true);
     }
