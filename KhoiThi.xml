@@ -52,4 +52,44 @@
         </monThiList>
         <tenKhoi>A01</tenKhoi>
     </KhoiThi>
+    <KhoiThi>
+        <id>4</id>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Toán</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Văn</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Sử</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Lý</tenMon>
+        </monThiList>
+        <tenKhoi>D01</tenKhoi>
+    </KhoiThi>
+    <KhoiThi>
+        <id>5</id>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Toán</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Văn</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Sử</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Lý</tenMon>
+        </monThiList>
+        <tenKhoi>A00</tenKhoi>
+    </KhoiThi>
 </KhoiThiXML>
