@@ -28,6 +28,7 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
             ManagerView view = new ManagerView();
             ManagerThiSinhController controller = new ManagerThiSinhController(view);
+             controller.showManagerView();
             view.setVisible(true);
         }
     }
@@ -37,7 +38,7 @@ public class AdminController {
         KhoiThiView khoiThiView = new KhoiThiView();
         ManagerKhoiThi managerKhoiThi = new ManagerKhoiThi(); // Lấy dữ liệu từ XML
         ManagerKhoiThiController managerKhoiThiController = new ManagerKhoiThiController(khoiThiView, managerKhoiThi);
-
+         managerKhoiThiController.showManagerView();
         khoiThiView.setVisible(true);
     }
 }

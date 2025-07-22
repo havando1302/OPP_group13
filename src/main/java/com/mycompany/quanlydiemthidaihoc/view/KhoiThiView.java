@@ -93,8 +93,6 @@ public class KhoiThiView extends javax.swing.JFrame {
     }
     return null; // Không tìm thấy
 }
-
-
  public KhoiThi getKhoiThiInfo() {
     int selectedRow = tableKhoiThi.getSelectedRow();
 
