@@ -508,13 +508,13 @@ public class KhoiThiView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(FieldName);
-        FieldName.setBounds(490, 130, 250, 40);
+        FieldName.setBounds(440, 220, 250, 40);
         FieldName.setOpaque(false);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("Tên Khối  Thi");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(290, 130, 120, 40);
+        jLabel5.setBounds(280, 220, 120, 40);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
@@ -525,7 +525,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel1.setText("Chọn môn Thi");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(290, 260, 140, 30);
+        jLabel1.setBounds(740, 230, 140, 30);
 
         javax.swing.GroupLayout monThiPanelLayout = new javax.swing.GroupLayout(monThiPanel);
         monThiPanel.setLayout(monThiPanelLayout);
@@ -535,11 +535,11 @@ public class KhoiThiView extends javax.swing.JFrame {
         );
         monThiPanelLayout.setVerticalGroup(
             monThiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         jPanel1.add(monThiPanel);
-        monThiPanel.setBounds(490, 260, 110, 160);
+        monThiPanel.setBounds(940, 110, 110, 300);
 
         jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

@@ -5,10 +5,6 @@
         <tenMon>Toán</tenMon>
     </MonThi>
     <MonThi>
-        <id>2</id>
-        <tenMon>Văn</tenMon>
-    </MonThi>
-    <MonThi>
         <id>3</id>
         <tenMon>Sử</tenMon>
     </MonThi>
@@ -17,11 +13,15 @@
         <tenMon>Lý</tenMon>
     </MonThi>
     <MonThi>
-        <id>6</id>
-        <tenMon>vật lý</tenMon>
-    </MonThi>
-    <MonThi>
         <id>7</id>
         <tenMon>Hóa</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>8</id>
+        <tenMon>Sinh</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>9</id>
+        <tenMon>Tiếng Anh</tenMon>
     </MonThi>
 </MonThiList>

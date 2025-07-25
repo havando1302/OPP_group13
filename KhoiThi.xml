@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <KhoiThiXML>
     <KhoiThi>
-        <id>1</id>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Toán</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Văn</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Lý</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>vật lý</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>HAHA</tenMon>
-        </monThiList>
-        <tenKhoi>Khoa học xã hội</tenKhoi>
-    </KhoiThi>
-    <KhoiThi>
         <id>2</id>
         <monThiList>
             <id>0</id>
@@ -41,26 +17,10 @@
         <tenKhoi>Khoa học tự nhiên</tenKhoi>
     </KhoiThi>
     <KhoiThi>
-        <id>3</id>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Toán</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Văn</tenMon>
-        </monThiList>
-        <tenKhoi>A01</tenKhoi>
-    </KhoiThi>
-    <KhoiThi>
         <id>4</id>
         <monThiList>
             <id>0</id>
             <tenMon>Toán</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Văn</tenMon>
         </monThiList>
         <monThiList>
             <id>0</id>
@@ -69,6 +29,10 @@
         <monThiList>
             <id>0</id>
             <tenMon>Lý</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Sinh</tenMon>
         </monThiList>
         <tenKhoi>D01</tenKhoi>
     </KhoiThi>
@@ -80,15 +44,15 @@
         </monThiList>
         <monThiList>
             <id>0</id>
-            <tenMon>Văn</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
             <tenMon>Sử</tenMon>
         </monThiList>
         <monThiList>
             <id>0</id>
             <tenMon>Lý</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Hóa</tenMon>
         </monThiList>
         <tenKhoi>A00</tenKhoi>
     </KhoiThi>

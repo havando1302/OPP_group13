@@ -12,6 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "KhoiThiXML")
 public class KhoiThiXML {
 
+    // Danh sách khối thi (dùng chung toàn cục)
+    private static List<KhoiThi> listKhoiThi = new ArrayList<>();
+
     private List<KhoiThi> khoiThi;
 
     @XmlElement(name = "KhoiThi")
@@ -33,10 +36,29 @@ public class KhoiThiXML {
             KhoiThiXML khoiThiXML = (KhoiThiXML) unmarshaller.unmarshal(file);
             if (khoiThiXML.getKhoiThi() != null) {
                 list.addAll(khoiThiXML.getKhoiThi());
+                listKhoiThi = list; // Gán dữ liệu cho biến static
             }
         } catch (JAXBException e) {
             e.printStackTrace();
         }
         return list;
     }
+
+    // Hàm gọi riêng để load dữ liệu dùng trong chương trình chính
+    public static void loadFromFile(String filePath) {
+        docFile(filePath); // đã gán cho listKhoiThi bên trong
+    }
+
+    // Trả về danh sách môn thi theo tên khối
+    public static List<MonThi> getMonThiTheoKhoi(String khoi) {
+        if (listKhoiThi == null) return new ArrayList<>(); // tránh lỗi NullPointer
+        for (KhoiThi k : listKhoiThi) {
+            if (k.getTenKhoi().equalsIgnoreCase(khoi)) {
+                return k.getMonThiList();
+            }
+        }
+        return new ArrayList<>();
+    }
+
+   
 }
