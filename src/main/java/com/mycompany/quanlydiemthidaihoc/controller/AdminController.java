@@ -57,6 +57,7 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
             DiemThiView view = new DiemThiView();
             DiemThiController controller = new DiemThiController(view);
+            controller.showManagerView();
             view.setVisible(true);
         }
     }

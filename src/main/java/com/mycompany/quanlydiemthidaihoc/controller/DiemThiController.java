@@ -33,7 +33,11 @@ public class DiemThiController {
 
         
     }
-
+public void showManagerView() {
+        List<DiemThi> list = managerDiemThi.getListDiem();
+        diemThiView.setVisible(true);
+        diemThiView.loadThiSinhDaNhap(list);
+    }
     // Thêm điểm
     class AddListener implements ActionListener {
     @Override
@@ -47,6 +51,8 @@ public class DiemThiController {
             String sbd = diemThiView.getSoBaoDanhDangChon();
             String khoi = diemThiView.getKhoiThiDangChon();
             diemThiView.showDiem(ten, sbd, khoi);
+            List<DiemThi> list = DiemThiXML.docDiemThi();
+            diemThiView.loadThiSinhDaNhap(list);
             diemThiView.showMessage("✅ Thêm tất cả điểm thành công!");
         } else {
             diemThiView.showMessage("❌ Không có điểm nào được lưu!");
@@ -65,6 +71,7 @@ public class DiemThiController {
                 if (diem != null) {
                     listDiemThi.set(selectedIndex, diem);
                     DiemThiXML.luuDiemThi(listDiemThi);
+                    
                     diemThiView.showMessage("✅ Cập nhật điểm thành công!");
                 } else {
                     diemThiView.showMessage("❌ Dữ liệu không hợp lệ!");

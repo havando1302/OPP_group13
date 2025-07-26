@@ -15,6 +15,11 @@ public class DiemThiXML {
 
     public static List<DiemThi> listDiemThi = docDiemThi();
 
+   public static void xoaTheoSBD(String sbd) {
+    listDiemThi.removeIf(d -> d.getSoBaoDanh().equals(sbd)); // Xóa theo SBD
+    luuDiemThi((ArrayList<DiemThi>) listDiemThi); // Ghi lại XML
+}
+
     private List<DiemThi> diemThi;
 
     @XmlElement(name = "DiemThi")

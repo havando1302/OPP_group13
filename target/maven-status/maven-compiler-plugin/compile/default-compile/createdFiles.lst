@@ -13,6 +13,7 @@ com\mycompany\quanlydiemthidaihoc\controller\ManagerThiSinhController$SearchSpec
 com\mycompany\quanlydiemthidaihoc\view\DiemThiView$4.class
 com\raven\chart\blankchart\BlankPlotChatRender.class
 com\mycompany\quanlydiemthidaihoc\utils\FileUtils.class
+com\mycompany\quanlydiemthidaihoc\view\ButtonRenderer.class
 com\mycompany\quanlydiemthidaihoc\view\KhoiThiView$3.class
 com\mycompany\quanlydiemthidaihoc\view\ManagerView$4.class
 com\mycompany\quanlydiemthidaihoc\view\ManagerView$13.class
@@ -80,6 +81,7 @@ com\mycompany\quanlydiemthidaihoc\action\CheckLogin.class
 com\raven\chart\blankchart\SeriesSize.class
 com\mycompany\quanlydiemthidaihoc\controller\AdminController$OpenManagerMonThi.class
 com\mycompany\quanlydiemthidaihoc\entity\User.class
+com\mycompany\quanlydiemthidaihoc\view\ButtonEditor.class
 com\mycompany\quanlydiemthidaihoc\view\DiemThiView$RoundedBorder.class
 com\raven\chart\ModelChart.class
 com\raven\chart\ModelLegend.class

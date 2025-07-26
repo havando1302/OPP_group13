@@ -31,10 +31,12 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -59,6 +61,9 @@ public class DiemThiView extends javax.swing.JFrame {
         btnDelete.setEnabled(false);
         tableThongTinThiSinh.setDefaultRenderer(Object.class, new DiemThiView.MyRenderer());
         tableMonVaDiem.setDefaultRenderer(Object.class, new DiemThiView.MyRenderer2());
+        tableThiSinhDaNhap.setDefaultRenderer(Object.class, new DiemThiView.MyRenderer2());
+        
+
     }
     
     private ImageIcon ImageIconSize(JLabel label, String filename)
@@ -102,7 +107,30 @@ public String getKhoiThiDangChon() {
 }
 
 
- 
+public void loadThiSinhDaNhap(List<DiemThi> list) {
+    DefaultTableModel model = (DefaultTableModel) tableThiSinhDaNhap.getModel();
+    model.setRowCount(0); // Xóa dữ liệu cũ
+
+    Set<String> sbdDaCo = new HashSet<>();
+    for (DiemThi diem : list) {
+        if (!sbdDaCo.contains(diem.getSoBaoDanh())) {
+            sbdDaCo.add(diem.getSoBaoDanh());
+            model.addRow(new Object[]{
+                diem.getSoBaoDanh(),
+                diem.getTenThiSinh(),
+                diem.getKhoiThi(),
+                "Xóa" // sẽ xử lý nút sau
+            });
+        }
+    }
+
+    // Nếu chưa gắn renderer/editor cho cột "Xóa", hãy thêm đoạn này:
+    tableThiSinhDaNhap.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
+    tableThiSinhDaNhap.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(new JCheckBox(), tableThiSinhDaNhap, this));
+
+}
+
+
 
 
 
@@ -208,10 +236,26 @@ public void clearDiemThiInfo() {
 }
 
 
-  public void clearForm() {
+ public void clearForm() {
     DefaultTableModel model = (DefaultTableModel) tableMonVaDiem.getModel();
-    model.setRowCount(0);
+
+    // Tìm chỉ số của cột "Điểm thi"
+    int diemColumnIndex = -1;
+    for (int i = 0; i < model.getColumnCount(); i++) {
+        if ("Điểm thi".equalsIgnoreCase(model.getColumnName(i))) {
+            diemColumnIndex = i;
+            break;
+        }
+    }
+
+    // Nếu tìm thấy cột điểm, xóa giá trị trong từng hàng
+    if (diemColumnIndex != -1) {
+        for (int row = 0; row < model.getRowCount(); row++) {
+            model.setValueAt("", row, diemColumnIndex);
+        }
+    }
 }
+
 
 
 
@@ -301,14 +345,18 @@ public void clearDiemThiInfo() {
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         FieldID = new javax.swing.JTextField();
         comboBoxThiSinh = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableThongTinThiSinh = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableMonVaDiem = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableThiSinhDaNhap = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -387,24 +435,36 @@ public void clearDiemThiInfo() {
             }
         });
 
+        ImageIcon imageIcon = new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/logoHN.png");
+        Image image = imageIcon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        imageIcon=new ImageIcon(image);
+        jLabel2.setIcon(imageIcon);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnResidentUndo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(btnLuu, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnResidentUndo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(btnLuu, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,12 +503,12 @@ public void clearDiemThiInfo() {
         });
         comboBoxThiSinh.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jPanel1.add(comboBoxThiSinh);
-        comboBoxThiSinh.setBounds(420, 140, 130, 40);
+        comboBoxThiSinh.setBounds(400, 170, 180, 40);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("Chọn Thí Sinh");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(290, 130, 120, 40);
+        jLabel5.setBounds(270, 160, 120, 40);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
@@ -456,10 +516,16 @@ public void clearDiemThiInfo() {
         jPanel1.add(jLabel10);
         jLabel10.setBounds(620, 0, 300, 80);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel1.setText("Danh Sách Thí Sinh");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(240, 350, 190, 20);
+
         jScrollPane2.setBackground(new java.awt.Color(0, 102, 255));
         jScrollPane2.setForeground(new java.awt.Color(0, 102, 255));
         // Ví dụ màu xanh nhạt
 
+        tableThongTinThiSinh.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tableThongTinThiSinh.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -473,11 +539,12 @@ public void clearDiemThiInfo() {
         jScrollPane2.setViewportView(tableThongTinThiSinh);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(230, 280, 590, 110);
+        jScrollPane2.setBounds(230, 250, 590, 90);
 
         jScrollPane3.setBackground(new java.awt.Color(0, 102, 255));
         jScrollPane3.setForeground(new java.awt.Color(0, 102, 255));
 
+        tableMonVaDiem.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         tableMonVaDiem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -491,7 +558,24 @@ public void clearDiemThiInfo() {
         jScrollPane3.setViewportView(tableMonVaDiem);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(820, 280, 450, 280);
+        jScrollPane3.setBounds(820, 160, 450, 180);
+
+        tableThiSinhDaNhap.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tableThiSinhDaNhap.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "SBD", "Họ Tên", "Khối Thi", "Hành Động"
+            }
+        ));
+        jScrollPane4.setViewportView(tableThiSinhDaNhap);
+
+        jPanel1.add(jScrollPane4);
+        jScrollPane4.setBounds(230, 380, 1040, 402);
 
         jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -693,14 +777,18 @@ public void hienThiBangDiemThi(String sbd, String khoi) {
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnResidentUndo;
     private javax.swing.JComboBox<String> comboBoxThiSinh;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tableMonVaDiem;
+    private javax.swing.JTable tableThiSinhDaNhap;
     private javax.swing.JTable tableThongTinThiSinh;
     // End of variables declaration//GEN-END:variables
 }
