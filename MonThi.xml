@@ -2,26 +2,42 @@
 <MonThiList>
     <MonThi>
         <id>1</id>
+        <maMon>HN3124</maMon>
         <tenMon>Toán</tenMon>
     </MonThi>
     <MonThi>
+        <id>2</id>
+        <maMon>HN3125</maMon>
+        <tenMon>Văn</tenMon>
+    </MonThi>
+    <MonThi>
         <id>3</id>
-        <tenMon>Sử</tenMon>
+        <maMon>HN3126</maMon>
+        <tenMon>Tiếng Anh</tenMon>
     </MonThi>
     <MonThi>
-        <id>5</id>
-        <tenMon>Lý</tenMon>
-    </MonThi>
-    <MonThi>
-        <id>7</id>
+        <id>4</id>
+        <maMon>HN3127</maMon>
         <tenMon>Hóa</tenMon>
     </MonThi>
     <MonThi>
-        <id>8</id>
+        <id>5</id>
+        <maMon>HN3128</maMon>
+        <tenMon>Lý</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>6</id>
+        <maMon>HN3129</maMon>
+        <tenMon>Sử</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>7</id>
+        <maMon>HN3130</maMon>
         <tenMon>Sinh</tenMon>
     </MonThi>
     <MonThi>
-        <id>9</id>
-        <tenMon>Tiếng Anh</tenMon>
+        <id>8</id>
+        <maMon>HN3131</maMon>
+        <tenMon>Địa</tenMon>
     </MonThi>
 </MonThiList>
