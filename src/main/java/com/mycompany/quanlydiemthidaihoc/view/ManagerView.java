@@ -7,6 +7,7 @@ import com.mycompany.quanlydiemthidaihoc.action.ManagerKhoiThi;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThiXML;
 import com.mycompany.quanlydiemthidaihoc.entity.ThiSinh;
+import static com.mycompany.quanlydiemthidaihoc.entity.ThiSinhXML.listThiSinh;
 import com.raven.chart.Chart;
 import com.raven.chart.ModelChart;
 import java.awt.event.ActionListener;
@@ -836,6 +837,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         jPanel1.add(Truong);
         Truong.setBounds(650, 260, 280, 40);
 
+        ComboBoxGT.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         ComboBoxGT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<none>", "Nam", "Nữ"}));
         jPanel1.add(ComboBoxGT);
         ComboBoxGT.setBounds(690, 110, 110, 40);
@@ -1252,7 +1254,7 @@ public void fillSpecialPersonFromSelectedRow() {
      */
    public ThiSinh getSpecialPersonInfo() {
     // Validate bắt buộc đủ field
-    if (!validateName() || !validateYear() || !validateAddress() || !validateImage() || !validateType()) {
+    if (!validateSBD() ||!validateName() || !validateYear() || !validateAddress() || !validateImage() || !validateType()) {
         return null;
     }
     try {
@@ -1267,7 +1269,7 @@ public void fillSpecialPersonFromSelectedRow() {
         specialPerson.setBirthday(BirthdayChooser.getDate());
         specialPerson.setGT(ComboBoxGT.getSelectedItem().toString().trim()); // ⚡ Giới tính
         specialPerson.setAddress(capitalizeWords(TextAreaAddress.getText().trim()));
-        specialPerson.setTruong(capitalizeWords(Truong.getText().trim())); // ⚡ Trường
+        specialPerson.setTruong(Truong.getText().trim());
         specialPerson.setType(ComboBoxType.getSelectedItem().toString().trim()); // ⚡ Khối thi
         specialPerson.setImage(specialPerson_image);
 
@@ -1277,7 +1279,33 @@ public void fillSpecialPersonFromSelectedRow() {
     }
     return null;
 }
+   
+ private boolean validateSBD() {
+    String sbd = SBD.getText().trim();
 
+    // Kiểm tra rỗng
+    if (sbd.isEmpty()) {
+        SBD.requestFocus();
+        showMessage("❌ Số báo danh không được để trống.");
+        return false;
+    }
+
+    
+    if (btnAdd.isEnabled()) {
+        for (ThiSinh ts : listThiSinh) {
+            if (ts.getSBD().equalsIgnoreCase(sbd)) {
+                SBD.requestFocus();
+                showMessage("❌ Số báo danh đã tồn tại. Vui lòng nhập số khác.");
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+   
     private boolean validateName() {
         String name = FieldName.getText();
         if (name == null || "".equals(name.trim())) {

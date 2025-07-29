@@ -543,15 +543,15 @@ public class KhoiThiView extends javax.swing.JFrame {
         monThiPanel.setLayout(monThiPanelLayout);
         monThiPanelLayout.setHorizontalGroup(
             monThiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
         monThiPanelLayout.setVerticalGroup(
             monThiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
         jPanel1.add(monThiPanel);
-        monThiPanel.setBounds(940, 110, 110, 300);
+        monThiPanel.setBounds(910, 80, 160, 350);
 
         jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -637,6 +637,8 @@ public class KhoiThiView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(KhoiThiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

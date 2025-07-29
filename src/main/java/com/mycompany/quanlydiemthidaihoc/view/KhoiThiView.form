@@ -605,19 +605,19 @@
         <Container class="javax.swing.JPanel" name="monThiPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="940" y="110" width="110" height="300"/>
+              <AbsoluteConstraints x="910" y="80" width="160" height="350"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="110" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="160" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="350" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

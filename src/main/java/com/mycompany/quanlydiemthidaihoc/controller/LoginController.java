@@ -25,12 +25,12 @@ public class LoginController {
         public void actionPerformed(ActionEvent e) {
             User user = loginView.getUser();
             if ("admin".equals(user.getRole()) && checkLogin.checkAdmin(user)) {
-                AdminMainView adminView = new AdminMainView();
+                AdminView adminView = new AdminView();
                 AdminController adminController = new AdminController(adminView);
                 adminController.showAdminView();
                 loginView.dispose();
             } else if ("student".equals(user.getRole()) && checkLogin.checkStudent(user, user.getUsername())) {
-                StudentMainView studentView = new StudentMainView();
+                TraCuuView studentView = new TraCuuView();
                 StudentController studentController = new StudentController(studentView);
                 studentController.showStudentView();
                 loginView.dispose();

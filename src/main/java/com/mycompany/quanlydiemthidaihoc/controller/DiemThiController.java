@@ -3,7 +3,7 @@ package com.mycompany.quanlydiemthidaihoc.controller;
 import com.mycompany.quanlydiemthidaihoc.action.ManagerDiemThi;
 import com.mycompany.quanlydiemthidaihoc.entity.DiemThi;
 import com.mycompany.quanlydiemthidaihoc.entity.DiemThiXML;
-import com.mycompany.quanlydiemthidaihoc.view.AdminMainView;
+import com.mycompany.quanlydiemthidaihoc.view.AdminView;
 import com.mycompany.quanlydiemthidaihoc.view.DiemThiView;
 
 import javax.swing.event.ListSelectionEvent;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DiemThiController {
     private DiemThiView diemThiView;
-    private AdminMainView mainView;
+    private AdminView mainView;
     private ManagerDiemThi managerDiemThi;
     private ArrayList<DiemThi> listDiemThi;
     private final String filePath = "diemthi.xml";
@@ -38,27 +38,42 @@ public void showManagerView() {
         diemThiView.setVisible(true);
         diemThiView.loadThiSinhDaNhap(list);
     }
-    // Thêm điểm
-    class AddListener implements ActionListener {
+   // Thêm điểm (cập nhật hoặc thêm mới)
+class AddListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        List<DiemThi> diemList = diemThiView.getTatCaDiemThiInfo();
+        List<DiemThi> diemMoiList = diemThiView.getTatCaDiemThiInfo();
 
-        if (diemList != null && !diemList.isEmpty()) {
-            listDiemThi.addAll(diemList); // Thêm tất cả điểm vào danh sách tổng
-            DiemThiXML.luuDiemThi((ArrayList<DiemThi>) listDiemThi); // Ghi lại XML
+        if (diemMoiList != null && !diemMoiList.isEmpty()) {
+            // Lấy thông tin thí sinh đang được chọn
             String ten = diemThiView.getTenThiSinhDangChon();
             String sbd = diemThiView.getSoBaoDanhDangChon();
             String khoi = diemThiView.getKhoiThiDangChon();
+
+            // Đọc toàn bộ điểm từ XML
+            List<DiemThi> danhSachGoc = DiemThiXML.docDiemThi();
+
+            // Xóa tất cả điểm cũ của thí sinh này
+            danhSachGoc.removeIf(d -> d.getTenThiSinh().equalsIgnoreCase(ten)
+                                   && d.getSoBaoDanh().equalsIgnoreCase(sbd)
+                                   && d.getKhoiThi().equalsIgnoreCase(khoi));
+
+            // Thêm điểm mới vào danh sách
+            danhSachGoc.addAll(diemMoiList);
+
+            // Ghi lại vào XML
+            DiemThiXML.luuDiemThi(new ArrayList<>(danhSachGoc));
+
+            // Cập nhật lại giao diện
             diemThiView.showDiem(ten, sbd, khoi);
-            List<DiemThi> list = DiemThiXML.docDiemThi();
-            diemThiView.loadThiSinhDaNhap(list);
-            diemThiView.showMessage("✅ Thêm tất cả điểm thành công!");
+            diemThiView.loadThiSinhDaNhap(danhSachGoc);
+            diemThiView.showMessage("✅ Đã lưu điểm cho thí sinh \"" + ten + "\"!");
         } else {
             diemThiView.showMessage("❌ Không có điểm nào được lưu!");
         }
     }
 }
+
 
 
     // Sửa điểm
@@ -115,7 +130,7 @@ public void showManagerView() {
     class UndoListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainView = new AdminMainView();
+            mainView = new AdminView();
             AdminController controller = new AdminController(mainView);
             controller.showAdminView();
             diemThiView.setVisible(false);

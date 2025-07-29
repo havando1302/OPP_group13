@@ -1242,6 +1242,9 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboBoxGT">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="20" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;&lt;none&gt;&quot;, &quot;Nam&quot;, &quot;N&#x1eef;&quot;})" type="code"/>
             </Property>

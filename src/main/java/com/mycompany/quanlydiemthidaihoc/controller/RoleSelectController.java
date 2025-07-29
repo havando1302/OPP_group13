@@ -1,13 +1,13 @@
 package com.mycompany.quanlydiemthidaihoc.controller;
 
 import com.mycompany.quanlydiemthidaihoc.view.LoginView;
-import com.mycompany.quanlydiemthidaihoc.view.RoleSelectView;
-import com.mycompany.quanlydiemthidaihoc.view.StudentMainView;
+import com.mycompany.quanlydiemthidaihoc.view.RoleSelect;
+import com.mycompany.quanlydiemthidaihoc.view.TraCuuView;
 
 public class RoleSelectController {
-    private RoleSelectView view;
+    private RoleSelect view;
 
-    public RoleSelectController(RoleSelectView view) {
+    public RoleSelectController(RoleSelect view) {
         this.view = view;
 
         this.view.addContinueListener(e -> {
@@ -19,7 +19,7 @@ public class RoleSelectController {
                 loginView.setVisible(true);
             } else {
                 // Mở form tra cứu điểm cho Thí sinh
-                StudentMainView studentView = new StudentMainView();
+                TraCuuView studentView = new TraCuuView();
                 StudentController studentController = new StudentController(studentView);
                 studentView.setVisible(true);
             }

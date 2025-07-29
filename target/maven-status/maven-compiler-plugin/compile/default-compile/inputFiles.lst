@@ -22,7 +22,7 @@ C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\myc
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\entity\User.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\QuanLyDiemThi\QuanLyDiemThiDaiHoc.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\utils\FileUtils.java
-C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\AdminMainView.java
+C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\AdminView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ButtonEditor.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ButtonRenderer.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\CustomButton.java
@@ -32,8 +32,7 @@ C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\myc
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ManagerMonThiView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\ManagerView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\RoleSelect.java
-C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\RoleSelectView.java
-C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\StudentMainView.java
+C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\mycompany\quanlydiemthidaihoc\view\TraCuuView.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\raven\chart\blankchart\BlankPlotChart.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\raven\chart\blankchart\BlankPlotChatRender.java
 C:\Users\OS\OneDrive\Documents\HaVanDo\QuanLyDiemThiDaiHoc\src\main\java\com\raven\chart\blankchart\NiceScale.java

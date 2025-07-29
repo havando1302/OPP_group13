@@ -7,7 +7,7 @@ package com.mycompany.quanlydiemthidaihoc.controller;
 import com.mycompany.quanlydiemthidaihoc.action.ManagerThiSinh;
 import com.mycompany.quanlydiemthidaihoc.entity.ThiSinh;
 import com.mycompany.quanlydiemthidaihoc.view.LoginView;
-import com.mycompany.quanlydiemthidaihoc.view.AdminMainView;
+import com.mycompany.quanlydiemthidaihoc.view.AdminView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerView;
 import java.util.List;
 //////import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class ManagerThiSinhController
     private ManagerThiSinh managerThiSinh;
     private ManagerView ThiSinhView;
     private LoginView loginView;
-    private AdminMainView mainView;
+    private AdminView mainView;
     public ManagerThiSinhController(ManagerView view) 
     {
         this.ThiSinhView = view;
@@ -242,7 +242,7 @@ public class ManagerThiSinhController
     {
         public void actionPerformed(ActionEvent e) 
         {
-            mainView = new AdminMainView();
+            mainView = new AdminView();
             AdminController mainController = new AdminController(mainView);
             mainController.showAdminView();
             ThiSinhView.setVisible(false);

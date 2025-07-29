@@ -2,7 +2,7 @@ package com.mycompany.quanlydiemthidaihoc.controller;
 
 import com.mycompany.quanlydiemthidaihoc.action.ManagerMonThi;
 import com.mycompany.quanlydiemthidaihoc.entity.MonThi;
-import com.mycompany.quanlydiemthidaihoc.view.AdminMainView;
+import com.mycompany.quanlydiemthidaihoc.view.AdminView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerMonThiView;
 
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class ManagerMonThiController {
     private ManagerMonThiView monThiView;
     private ManagerMonThi managerMonThi;
-    private AdminMainView mainView;
+    private AdminView mainView;
 
     public ManagerMonThiController(ManagerMonThiView view) {
         this.monThiView = view;
@@ -73,7 +73,7 @@ public class ManagerMonThiController {
     }
  class UndoListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            mainView = new AdminMainView();
+            mainView = new AdminView();
             AdminController controller = new AdminController(mainView);
             controller.showAdminView();
             monThiView.setVisible(false);

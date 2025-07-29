@@ -40,4 +40,14 @@
         <maMon>HN3131</maMon>
         <tenMon>Địa</tenMon>
     </MonThi>
+    <MonThi>
+        <id>9</id>
+        <maMon>HN3132</maMon>
+        <tenMon>Vẽ</tenMon>
+    </MonThi>
+    <MonThi>
+        <id>10</id>
+        <maMon>HN3133</maMon>
+        <tenMon>Năng Khiếu Thể Dục</tenMon>
+    </MonThi>
 </MonThiList>

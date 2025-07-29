@@ -8,14 +8,6 @@
         </monThiList>
         <monThiList>
             <id>0</id>
-            <tenMon>Văn</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
-            <tenMon>Tiếng Anh</tenMon>
-        </monThiList>
-        <monThiList>
-            <id>0</id>
             <tenMon>Hóa</tenMon>
         </monThiList>
         <monThiList>
@@ -23,5 +15,21 @@
             <tenMon>Lý</tenMon>
         </monThiList>
         <tenKhoi>A00</tenKhoi>
+    </KhoiThi>
+    <KhoiThi>
+        <id>2</id>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Toán</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Tiếng Anh</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Lý</tenMon>
+        </monThiList>
+        <tenKhoi>A01</tenKhoi>
     </KhoiThi>
 </KhoiThiXML>

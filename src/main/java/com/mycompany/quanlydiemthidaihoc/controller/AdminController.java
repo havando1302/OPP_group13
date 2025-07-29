@@ -1,7 +1,7 @@
 package com.mycompany.quanlydiemthidaihoc.controller;
 
 import com.mycompany.quanlydiemthidaihoc.action.ManagerKhoiThi;
-import com.mycompany.quanlydiemthidaihoc.view.AdminMainView;
+import com.mycompany.quanlydiemthidaihoc.view.AdminView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerView;
 import com.mycompany.quanlydiemthidaihoc.view.KhoiThiView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerMonThiView;
@@ -11,9 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminController {
-    private final AdminMainView adminView;
+    private final AdminView adminView;
 
-    public AdminController(AdminMainView view) {
+    public AdminController(AdminView view) {
         this.adminView = view;
 
         adminView.addManageThiSinhListener(new OpenManagerThiSinh());

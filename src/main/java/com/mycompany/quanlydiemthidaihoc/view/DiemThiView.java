@@ -119,12 +119,12 @@ public void loadThiSinhDaNhap(List<DiemThi> list) {
                 diem.getSoBaoDanh(),
                 diem.getTenThiSinh(),
                 diem.getKhoiThi(),
-                "Xóa" // sẽ xử lý nút sau
+                "Xóa" 
             });
         }
     }
 
-    // Nếu chưa gắn renderer/editor cho cột "Xóa", hãy thêm đoạn này:
+    
     tableThiSinhDaNhap.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
     tableThiSinhDaNhap.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(new JCheckBox(), tableThiSinhDaNhap, this));
 
@@ -153,7 +153,7 @@ public void loadThiSinhDaNhap(List<DiemThi> list) {
         return null;
     }
 }
-  public List<DiemThi> getTatCaDiemThiInfo() {
+ public List<DiemThi> getTatCaDiemThiInfo() {
     List<DiemThi> list = new ArrayList<>();
 
     // Lấy thông tin thí sinh
@@ -164,6 +164,9 @@ public void loadThiSinhDaNhap(List<DiemThi> list) {
     for (int i = 0; i < tableMonVaDiem.getRowCount(); i++) {
         String mon = tableMonVaDiem.getValueAt(i, 0).toString();
         String diemStr = tableMonVaDiem.getValueAt(i, 1).toString().trim();
+
+        
+        diemStr = diemStr.replace(",", ".");
 
         // Kiểm tra điểm
         try {
@@ -181,6 +184,7 @@ public void loadThiSinhDaNhap(List<DiemThi> list) {
 
     return list;
 }
+
 public void showDiem(String ten, String sbd, String khoi) {
     // Duyệt từng dòng trong bảng môn và điểm
     listDiemThi = DiemThiXML.docDiemThi();
