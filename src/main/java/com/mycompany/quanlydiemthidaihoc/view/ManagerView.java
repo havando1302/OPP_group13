@@ -855,6 +855,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         FieldID.setBounds(260, 38, 70, 40);
         FieldID.setOpaque(false);
 
+        jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel9);
         jLabel9.setBounds(-180, 0, 1640, 890);

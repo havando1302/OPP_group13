@@ -1,35 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DiemThiXML>
     <DiemThi>
-        <diem>7.8</diem>
+        <diem>5.6</diem>
         <khoiThi>A00</khoiThi>
         <monThi>Toán</monThi>
         <soBaoDanh>NA1212</soBaoDanh>
         <tenThiSinh>Hà Văn Đô</tenThiSinh>
     </DiemThi>
     <DiemThi>
-        <diem>8.9</diem>
-        <khoiThi>A00</khoiThi>
-        <monThi>Văn</monThi>
-        <soBaoDanh>NA1212</soBaoDanh>
-        <tenThiSinh>Hà Văn Đô</tenThiSinh>
-    </DiemThi>
-    <DiemThi>
-        <diem>9.0</diem>
-        <khoiThi>A00</khoiThi>
-        <monThi>Tiếng Anh</monThi>
-        <soBaoDanh>NA1212</soBaoDanh>
-        <tenThiSinh>Hà Văn Đô</tenThiSinh>
-    </DiemThi>
-    <DiemThi>
-        <diem>5.6</diem>
+        <diem>6.7</diem>
         <khoiThi>A00</khoiThi>
         <monThi>Hóa</monThi>
         <soBaoDanh>NA1212</soBaoDanh>
         <tenThiSinh>Hà Văn Đô</tenThiSinh>
     </DiemThi>
     <DiemThi>
-        <diem>4.5</diem>
+        <diem>8.0</diem>
         <khoiThi>A00</khoiThi>
         <monThi>Lý</monThi>
         <soBaoDanh>NA1212</soBaoDanh>

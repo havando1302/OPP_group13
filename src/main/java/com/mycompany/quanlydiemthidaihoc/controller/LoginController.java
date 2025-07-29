@@ -10,11 +10,13 @@ import java.awt.event.ActionListener;
 public class LoginController {
     private LoginView loginView;
     private CheckLogin checkLogin;
+    private RoleSelect RoleSelectView;
 
     public LoginController(LoginView view) {
         this.loginView = view;
         this.checkLogin = new CheckLogin();
         view.addLoginListener(new LoginListener());
+        view.addUndoListener(new UndoListener());
     }
 
     public void showLoginView() {
@@ -38,5 +40,14 @@ public class LoginController {
                 loginView.showMessage("Sai thông tin đăng nhập!");
             }
         }
+    }
+    class UndoListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        RoleSelect roleSelectView = new RoleSelect();
+        RoleSelectController controller = new RoleSelectController(roleSelectView);
+        controller.showRoleSelectView(); 
+        loginView.setVisible(false); 
+    }
     }
 }

@@ -68,6 +68,7 @@ public class LoginView extends javax.swing.JFrame
         passwordField = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        btnResidentUndo = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
@@ -119,7 +120,7 @@ public class LoginView extends javax.swing.JFrame
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color( 12, 32, 66));
@@ -179,6 +180,11 @@ public class LoginView extends javax.swing.JFrame
             }
         });
 
+        btnResidentUndo.setBackground(new java.awt.Color(0, 51, 153));
+        btnResidentUndo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnResidentUndo.setForeground(new java.awt.Color(255, 255, 255));
+        btnResidentUndo.setText("Thoát");
+
         jLabel6.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Xin chào Admin!");
@@ -210,7 +216,8 @@ public class LoginView extends javax.swing.JFrame
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117))))
+                        .addGap(117, 117, 117))
+                    .addComponent(btnResidentUndo, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +240,8 @@ public class LoginView extends javax.swing.JFrame
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnResidentUndo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         passwordField.setOpaque(false);
@@ -254,8 +262,7 @@ public class LoginView extends javax.swing.JFrame
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -272,10 +279,10 @@ public class LoginView extends javax.swing.JFrame
     } else {
         showMessage("Sai thông tin đăng nhập!");
     }
-
-
     }//GEN-LAST:event_btnLoginActionPerformed
-
+ public void addUndoListener(ActionListener listener){
+        btnResidentUndo.addActionListener(listener);
+    }
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
@@ -338,6 +345,7 @@ public class LoginView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnResidentUndo;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

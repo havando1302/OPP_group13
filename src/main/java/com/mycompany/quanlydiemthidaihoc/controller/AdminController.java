@@ -6,16 +6,17 @@ import com.mycompany.quanlydiemthidaihoc.view.ManagerView;
 import com.mycompany.quanlydiemthidaihoc.view.KhoiThiView;
 import com.mycompany.quanlydiemthidaihoc.view.ManagerMonThiView;
 import com.mycompany.quanlydiemthidaihoc.view.DiemThiView;
+import com.mycompany.quanlydiemthidaihoc.view.LoginView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminController {
     private final AdminView adminView;
-
+    private LoginView loginView;
     public AdminController(AdminView view) {
         this.adminView = view;
-
+        view.addUndoListener(new UndoListener());
         adminView.addManageThiSinhListener(new OpenManagerThiSinh());
         adminView.addManageKhoiThiListener(new OpenManagerKhoiThi());
         adminView.addManageMonThiListener(new OpenManagerMonThi());
@@ -25,13 +26,21 @@ public class AdminController {
     public void showAdminView() {
         adminView.setVisible(true);
     }
-
+    class UndoListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        LoginView loginView = new LoginView();
+        LoginController controller = new LoginController(loginView);
+        controller.showLoginView(); 
+        adminView.setVisible(false); 
+    }
+    }
     class OpenManagerThiSinh implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ManagerView view = new ManagerView();
             ManagerThiSinhController controller = new ManagerThiSinhController(view);
             controller.showManagerView();
-            view.setVisible(true);
+            adminView.setVisible(false);
         }
     }
 
@@ -41,7 +50,7 @@ public class AdminController {
             ManagerKhoiThi managerKhoiThi = new ManagerKhoiThi();
             ManagerKhoiThiController managerKhoiThiController = new ManagerKhoiThiController(khoiThiView, managerKhoiThi);
             managerKhoiThiController.showManagerView();
-            khoiThiView.setVisible(true);
+            adminView.setVisible(false);
         }
     }
 
@@ -49,7 +58,8 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
             ManagerMonThiView view = new ManagerMonThiView();
             ManagerMonThiController controller = new ManagerMonThiController(view);
-            view.setVisible(true);
+            controller.showManagerView();
+            adminView.setVisible(false);
         }
     }
 
@@ -58,7 +68,7 @@ public class AdminController {
             DiemThiView view = new DiemThiView();
             DiemThiController controller = new DiemThiController(view);
             controller.showManagerView();
-            view.setVisible(true);
+           adminView.setVisible(false);
         }
     }
 }

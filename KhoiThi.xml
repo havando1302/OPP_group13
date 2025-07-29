@@ -32,4 +32,36 @@
         </monThiList>
         <tenKhoi>A01</tenKhoi>
     </KhoiThi>
+    <KhoiThi>
+        <id>3</id>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Toán</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Hóa</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Sinh</tenMon>
+        </monThiList>
+        <tenKhoi>B00</tenKhoi>
+    </KhoiThi>
+    <KhoiThi>
+        <id>4</id>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Toán</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Sử</tenMon>
+        </monThiList>
+        <monThiList>
+            <id>0</id>
+            <tenMon>Sinh</tenMon>
+        </monThiList>
+        <tenKhoi>B01</tenKhoi>
+    </KhoiThi>
 </KhoiThiXML>

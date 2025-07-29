@@ -35,6 +35,7 @@ public class AdminView extends javax.swing.JFrame {
         btnQuanLyMonThi = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnResidentUndo = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -64,6 +65,7 @@ public class AdminView extends javax.swing.JFrame {
         btnQuanLyThiSinh.setText("<html><div style='text-align: center;'> Quản Lý Thí Sinh<br></div>");
         btnQuanLyThiSinh.setToolTipText("");
         btnQuanLyThiSinh.setBorder(null);
+        btnQuanLyThiSinh.setBorderPainted(false);
         btnQuanLyThiSinh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQuanLyThiSinh.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnQuanLyThiSinh.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +114,14 @@ public class AdminView extends javax.swing.JFrame {
         jLabel5.setText("<html>Xin Chào Admin<br> ");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        btnResidentUndo.setBackground(new java.awt.Color(0, 51, 153));
+        btnResidentUndo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnResidentUndo.setForeground(new java.awt.Color(255, 255, 255));
+        btnResidentUndo.setText("Thoát");
+
+        jLabel9.setBackground(new java.awt.Color(0, 51, 153));
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/trangchu.jpg"));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -119,16 +129,6 @@ public class AdminView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnQuanLyKhoiThi, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnQuanLyThiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnQuanLyDiemThi, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnQuanLyMonThi, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,6 +137,19 @@ public class AdminView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(384, 384, 384))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnQuanLyKhoiThi, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnQuanLyThiSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnQuanLyDiemThi, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnQuanLyMonThi, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnResidentUndo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(127, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,7 +170,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnQuanLyKhoiThi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnQuanLyMonThi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(btnResidentUndo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
         );
@@ -232,13 +246,16 @@ public class AdminView extends javax.swing.JFrame {
     public void addManageDiemThiListener(ActionListener listener) { 
         btnQuanLyDiemThi.addActionListener(listener);
     }
-    
+    public void addUndoListener(ActionListener listener){
+        btnResidentUndo.addActionListener(listener);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnQuanLyDiemThi;
     private javax.swing.JButton btnQuanLyKhoiThi;
     private javax.swing.JButton btnQuanLyMonThi;
     private javax.swing.JButton btnQuanLyThiSinh;
+    private javax.swing.JButton btnResidentUndo;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

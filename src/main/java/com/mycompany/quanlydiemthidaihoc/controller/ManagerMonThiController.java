@@ -18,7 +18,11 @@ public class ManagerMonThiController {
     private ManagerMonThiView monThiView;
     private ManagerMonThi managerMonThi;
     private AdminView mainView;
-
+public void showManagerView() {
+        List<MonThi> list = managerMonThi.getListMonThi();
+        monThiView.setVisible(true);
+        loadMonThiTable();
+    }
     public ManagerMonThiController(ManagerMonThiView view) {
         this.monThiView = view;
         this.managerMonThi = new ManagerMonThi();
