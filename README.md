@@ -1,3 +1,5 @@
+LƯU Ý: Để đảm bảo dữ liệu đồng bộ và hiển thị chính xác trên giao diện, cần thực hiện theo thứ tự: Môn thi → Khối thi → Thí sinh → Điểm thi. Nếu làm sai thứ tự, một số thông tin sẽ không được hiển thị do dữ liệu XML chưa được cập nhật đầy đủ.
+
 1. Vai trò "Admin"
 - Khi chọn vai trò "Admin":
   → Hệ thống chuyển đến giao diện đăng nhập.
