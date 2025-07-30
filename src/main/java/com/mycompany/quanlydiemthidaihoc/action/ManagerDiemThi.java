@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerDiemThi {
-    private static final String FILE_NAME = "diemthi.xml";
+    private final String RESOURCE_PATH = "diemthi.xml"; 
     private List<DiemThi> listDiem;
 
     public ManagerDiemThi() {
-        listDiem = DiemThiXML.docFile(FILE_NAME);
+        listDiem = DiemThiXML.docFile(RESOURCE_PATH);
         if (listDiem == null) {
             listDiem = new ArrayList<>();
         }
@@ -23,7 +23,7 @@ public class ManagerDiemThi {
 
     public void add(DiemThi diem) {
         listDiem.add(diem);
-        DiemThiXML.ghiFile(FILE_NAME, (ArrayList<DiemThi>) listDiem);
+        DiemThiXML.ghiFile(RESOURCE_PATH, (ArrayList<DiemThi>) listDiem);
     }
 
     public void edit(DiemThi diem) {
@@ -32,23 +32,24 @@ public class ManagerDiemThi {
             if (d.getSoBaoDanh().equalsIgnoreCase(diem.getSoBaoDanh())
                     && d.getMonThi().equalsIgnoreCase(diem.getMonThi())) {
                 listDiem.set(i, diem);
-                DiemThiXML.ghiFile(FILE_NAME, (ArrayList<DiemThi>) listDiem);
+                DiemThiXML.ghiFile(RESOURCE_PATH, (ArrayList<DiemThi>) listDiem);
                 return;
             }
         }
     }
 
     public boolean delete(DiemThi diem) {
-        boolean removed = listDiem.removeIf(d -> d.getSoBaoDanh().equalsIgnoreCase(diem.getSoBaoDanh())
-                && d.getMonThi().equalsIgnoreCase(diem.getMonThi()));
+        boolean removed = listDiem.removeIf(d ->
+                d.getSoBaoDanh().equalsIgnoreCase(diem.getSoBaoDanh())
+                        && d.getMonThi().equalsIgnoreCase(diem.getMonThi()));
         if (removed) {
-            DiemThiXML.ghiFile(FILE_NAME, (ArrayList<DiemThi>) listDiem);
+            DiemThiXML.ghiFile(RESOURCE_PATH, (ArrayList<DiemThi>) listDiem);
         }
         return removed;
     }
 
     public void save() {
-        DiemThiXML.ghiFile(FILE_NAME, (ArrayList<DiemThi>) listDiem);
+        DiemThiXML.ghiFile(RESOURCE_PATH, (ArrayList<DiemThi>) listDiem);
     }
 
     public List<DiemThi> findBySBD(String sbd) {

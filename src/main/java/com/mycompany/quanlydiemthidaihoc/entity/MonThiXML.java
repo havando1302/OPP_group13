@@ -1,20 +1,32 @@
 package com.mycompany.quanlydiemthidaihoc.entity;
+import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "MonThiList")
+@XmlAccessorType(XmlAccessType.FIELD) 
 public class MonThiXML {
 
-    private List<MonThi> monThi;
+    @XmlElement(name = "MonThi")       
+    private List<MonThi> monThi = new ArrayList<>();
 
-    @XmlElement(name = "MonThi")
+    // Đường dẫn file XML trong resources hoặc data
+    private static final String RESOURCE_PATH = "monthi.xml";
+
+    public MonThiXML() {
+    }
+
     public List<MonThi> getMonThi() {
         return monThi;
     }
@@ -23,22 +35,19 @@ public class MonThiXML {
         this.monThi = monThi;
     }
 
-    // Đọc danh sách môn thi từ file XML
-    public static List<MonThi> readFromFile(String filePath) {
-        try {
-            JAXBContext context = JAXBContext.newInstance(MonThiXML.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            MonThiXML wrapper = (MonThiXML) unmarshaller.unmarshal(new File(filePath));
+    // ✅ Đọc danh sách môn thi từ file XML (dùng FileUtils.readXMLFilePortable)
+    public static List<MonThi> readFromFile() {
+        MonThiXML wrapper = (MonThiXML) FileUtils.readXMLFilePortable(RESOURCE_PATH, MonThiXML.class);
+        if (wrapper != null && wrapper.getMonThi() != null) {
             return wrapper.getMonThi();
-        } catch (JAXBException e) {
-            e.printStackTrace();
+        } else {
             return new ArrayList<>();
         }
     }
 
-    // Lấy danh sách tên môn thi
-    public static List<String> docFile(String filePath) {
-        List<MonThi> danhSach = readFromFile(filePath);
+    // ✅ Lấy danh sách tên môn thi
+    public static List<String> docFile() {
+        List<MonThi> danhSach = readFromFile();
         List<String> tenMonThi = new ArrayList<>();
         for (MonThi mt : danhSach) {
             tenMonThi.add(mt.getTenMon());

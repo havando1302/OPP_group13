@@ -1,24 +1,28 @@
 package com.mycompany.quanlydiemthidaihoc.entity;
 
-import java.io.File;
 import java.util.ArrayList;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+
+import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "ThiSinhXML")
-@XmlAccessorType(XmlAccessType.FIELD) 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ThiSinhXML {
+
+    private static final String RESOURCE_PATH = "thisinh.xml"; // ✅ sửa thành biến chuẩn
 
     public static List<ThiSinh> listThiSinh = new ArrayList<>();
 
+    public static void loadFromFile(String RESOURCE_PATH) {
+        listThiSinh = docFile(RESOURCE_PATH);
+    }
+
     @XmlElement(name = "ThiSinh")
-    private List<ThiSinh> thiSinh;
+    private List<ThiSinh> thiSinh = new ArrayList<>();
 
     public List<ThiSinh> getThiSinh() {
         return thiSinh;
@@ -28,27 +32,23 @@ public class ThiSinhXML {
         this.thiSinh = thiSinh;
     }
 
+    // ✅ Sử dụng FileUtils.readXMLFilePortable để đọc từ resources (hỗ trợ JAR/IDE)
     public static ArrayList<ThiSinh> docFile(String filePath) {
         ArrayList<ThiSinh> list = new ArrayList<>();
         try {
-            File file = new File(filePath);
-            if (!file.exists()) return list;
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(ThiSinhXML.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            ThiSinhXML ThiSinhXML = (ThiSinhXML) unmarshaller.unmarshal(file);
-            if (ThiSinhXML.getThiSinh() != null) {
-                list.addAll(ThiSinhXML.getThiSinh());
+            ThiSinhXML wrapper = (ThiSinhXML) FileUtils.readXMLFilePortable(filePath, ThiSinhXML.class);
+            if (wrapper != null && wrapper.getThiSinh() != null) {
+                list.addAll(wrapper.getThiSinh());
             }
-        } catch (JAXBException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
-    // Gán dữ liệu tĩnh từ file
-    public static void loadFromFile(String filePath) {
-        listThiSinh = docFile(filePath);
+    // ✅ Dùng RESOURCE_PATH để load
+    public static void loadFromFile() {
+        listThiSinh = docFile(RESOURCE_PATH);
     }
 
     public static ThiSinh getThiSinhTheoTen(String ten) {
@@ -61,4 +61,3 @@ public class ThiSinhXML {
         return null;
     }
 }
-

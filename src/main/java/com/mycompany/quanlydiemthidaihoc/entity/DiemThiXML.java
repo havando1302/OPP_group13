@@ -1,28 +1,31 @@
 package com.mycompany.quanlydiemthidaihoc.entity;
 
+import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "DiemThiXML")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DiemThiXML {
+
+    @XmlElement(name = "DiemThi")
+    private List<DiemThi> diemThi = new ArrayList<>();
+
+    // ✅ Dùng biến này để thống nhất đường dẫn tới file XML
+    private static final String RESOURCE_PATH = "diemthi.xml";
 
     public static List<DiemThi> listDiemThi = docDiemThi();
 
-   public static void xoaTheoSBD(String sbd) {
-    listDiemThi.removeIf(d -> d.getSoBaoDanh().equals(sbd)); // Xóa theo SBD
-    luuDiemThi((ArrayList<DiemThi>) listDiemThi); // Ghi lại XML
-}
-
-    private List<DiemThi> diemThi;
-
-    @XmlElement(name = "DiemThi")
     public List<DiemThi> getDiemThi() {
         return diemThi;
     }
@@ -31,57 +34,63 @@ public class DiemThiXML {
         this.diemThi = diemThi;
     }
 
-    // Đọc file XML thành danh sách DiemThi
-    public static ArrayList<DiemThi> docFile(String filePath) {
-        ArrayList<DiemThi> list = new ArrayList<>();
-        try {
-            File file = new File(filePath);
-            if (!file.exists()) return list;
+    // ✅ Đọc danh sách DiemThi từ file XML bất kỳ (dùng FileUtils hỗ trợ JAR)
+  public static ArrayList<DiemThi> docFile(String fileName) {
+    ArrayList<DiemThi> list = new ArrayList<>();
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(DiemThiXML.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            DiemThiXML diemThiXML = (DiemThiXML) unmarshaller.unmarshal(file);
-            if (diemThiXML.getDiemThi() != null) {
-                list.addAll(diemThiXML.getDiemThi());
-            }
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        return list;
+    // Sử dụng method đã xử lý sẵn của bạn
+    DiemThiXML wrapper = (DiemThiXML) FileUtils.readXMLFilePortable(fileName, DiemThiXML.class);
+
+    if (wrapper != null && wrapper.getDiemThi() != null) {
+        list.addAll(wrapper.getDiemThi());
     }
 
-    // Ghi danh sách DiemThi ra file XML
-    public static void ghiFile(String filePath, ArrayList<DiemThi> listDiemThi) {
-        try {
-            DiemThiXML diemThiXML = new DiemThiXML();
-            diemThiXML.setDiemThi(listDiemThi);
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(DiemThiXML.class);
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(diemThiXML, new File(filePath));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Tiện lợi: Đọc nhanh mặc định từ file diemthi.xml
-    public static ArrayList<DiemThi> docDiemThi() {
-        return docFile("diemthi.xml");
-    }
-
-    // Tiện lợi: Ghi nhanh mặc định ra file diemthi.xml
-    public static void luuDiemThi(ArrayList<DiemThi> listDiemThi) {
-        ghiFile("diemthi.xml", listDiemThi);
-    }
-    public static List<DiemThi> getDiemTheoSBD(String sbd) {
-    List<DiemThi> result = new ArrayList<>();
-    for (DiemThi dt : listDiemThi) {
-        if (dt.getSoBaoDanh().equalsIgnoreCase(sbd)) {
-            result.add(dt);
-        }
-    }
-    return result;
+    return list;
 }
-   
+
+
+    // ✅ Ghi danh sách DiemThi ra file XML
+   public static void ghiFile(String fileName, ArrayList<DiemThi> listDiemThi) {
+    try {
+        // Bọc danh sách DiemThi vào wrapper DiemThiXML
+        DiemThiXML wrapper = new DiemThiXML();
+        wrapper.setDiemThi(listDiemThi);
+
+        // Ghi file bằng FileUtils vào thư mục data/
+        FileUtils.writeXMLtoDataDir(fileName, wrapper);
+
+        System.out.println("✅ Ghi file thành công: data/" + fileName);
+    } catch (Exception e) {
+        System.err.println("❌ Ghi file thất bại: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+
+    // ✅ Đọc mặc định từ RESOURCE_PATH
+    public static ArrayList<DiemThi> docDiemThi() {
+        return docFile(RESOURCE_PATH);
+    }
+
+    // ✅ Ghi mặc định ra RESOURCE_PATH
+    public static void luuDiemThi(ArrayList<DiemThi> listDiemThi) {
+        ghiFile(RESOURCE_PATH, listDiemThi);
+    }
+
+    // ✅ Lấy danh sách điểm theo SBD
+    public static List<DiemThi> getDiemTheoSBD(String sbd) {
+        List<DiemThi> result = new ArrayList<>();
+        for (DiemThi dt : listDiemThi) {
+            if (dt.getSoBaoDanh().equalsIgnoreCase(sbd)) {
+                result.add(dt);
+            }
+        }
+        return result;
+    }
+
+    // ✅ Xoá điểm theo SBD và lưu lại
+    public static void xoaTheoSBD(String sbd) {
+        listDiemThi.removeIf(d -> d.getSoBaoDanh().equalsIgnoreCase(sbd));
+        luuDiemThi(new ArrayList<>(listDiemThi));
+    }
 }

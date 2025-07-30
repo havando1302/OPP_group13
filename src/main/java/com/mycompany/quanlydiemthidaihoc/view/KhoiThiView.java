@@ -6,6 +6,7 @@ package com.mycompany.quanlydiemthidaihoc.view;
 import com.mycompany.quanlydiemthidaihoc.entity.KhoiThi;
 import com.mycompany.quanlydiemthidaihoc.entity.MonThi;
 import com.mycompany.quanlydiemthidaihoc.entity.MonThiXML;
+import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
 import com.raven.chart.Chart;
 import com.raven.chart.ModelChart;
 import java.awt.event.ActionListener;
@@ -50,6 +51,7 @@ public class KhoiThiView extends javax.swing.JFrame {
     private SimpleDateFormat fDate=new SimpleDateFormat("dd/MM/yyyy");
     FlowLayout flowLayout = new FlowLayout();
     private List<KhoiThi> listKhoiThi;
+    private static final String RESOURCE_PATH = "monthi.xml";
     public KhoiThiView() {
         initComponents();
         monThiPanel.setLayout(new BoxLayout(monThiPanel, BoxLayout.Y_AXIS)); 
@@ -96,7 +98,6 @@ public class KhoiThiView extends javax.swing.JFrame {
  public KhoiThi getKhoiThiInfo() {
     int selectedRow = tableKhoiThi.getSelectedRow();
 
-    // Nếu đang thêm mới, thì ID có thể tự sinh, bạn cho id = -1 hoặc bỏ qua.
     int id = -1;
     if (selectedRow != -1) {
         id = (int) tableKhoiThi.getValueAt(selectedRow, 0);
@@ -133,7 +134,7 @@ public class KhoiThiView extends javax.swing.JFrame {
             return khoi;
         }
     }
-    return null; // Không tìm thấy
+    return null; 
 }
 
 
@@ -323,7 +324,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnCancelSearch.setBackground(new java.awt.Color(0, 0, 102));
         btnCancelSearch.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCancelSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelSearch.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/cancel.png"));
+        btnCancelSearch.setIcon(new ImageIcon(getClass().getResource("/images/cancel.png")));
         btnCancelSearch.setText("Hủy tìm kiếm");
         btnCancelSearch.setToolTipText("");
         btnCancelSearch.setBorder(null);
@@ -338,7 +339,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnResidentUndo.setBackground(new java.awt.Color(0, 0, 102));
         btnResidentUndo.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnResidentUndo.setForeground(new java.awt.Color(255, 255, 255));
-        btnResidentUndo.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/LogOut.png"));
+        btnResidentUndo.setIcon(new ImageIcon(getClass().getResource("/images/LogOut.png")));
         btnResidentUndo.setText("Quay lại");
         btnResidentUndo.setToolTipText("");
         btnResidentUndo.setBorder(null);
@@ -352,7 +353,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnSearch.setBackground(new java.awt.Color(0, 0, 102));
         btnSearch.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/search.png"));
+        btnSearch.setIcon(new ImageIcon(getClass().getResource("/images/search.png")));
         btnSearch.setText("Tìm kiếm");
         btnSearch.setBorder(null);
         btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -366,7 +367,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnAdd.setBackground(new java.awt.Color(0, 0, 102));
         btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/add.png"));
+        btnAdd.setIcon(new ImageIcon(getClass().getResource("/images/add.png")));
         btnAdd.setText("Thêm");
         btnAdd.setBorder(null);
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -379,7 +380,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnEdit.setBackground(new java.awt.Color(0, 0, 102));
         btnEdit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Edit.png"));
+        btnEdit.setIcon(new ImageIcon(getClass().getResource("/images/Edit.png")));
         btnEdit.setText("Cập nhật");
         btnEdit.setBorder(null);
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -392,7 +393,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnDelete.setBackground(new java.awt.Color(0, 0, 102));
         btnDelete.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/delete.png"));
+        btnDelete.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
         btnDelete.setText("Xóa");
         btnDelete.setBorder(null);
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -405,7 +406,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         btnClear.setBackground(new java.awt.Color(0, 0, 102));
         btnClear.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnClear.setForeground(new java.awt.Color(255, 255, 255));
-        btnClear.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/trash.png"));
+        btnClear.setIcon(new ImageIcon(getClass().getResource("/images/trash.png")));
         btnClear.setText("Làm mới");
         btnClear.setToolTipText("");
         btnClear.setBorder(null);
@@ -416,10 +417,7 @@ public class KhoiThiView extends javax.swing.JFrame {
             }
         });
 
-        ImageIcon imageIcon = new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/logoHN.png");
-        Image image = imageIcon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
-        imageIcon=new ImageIcon(image);
-        jLabel2.setIcon(imageIcon);
+        jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/logoHN.png")));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -553,7 +551,7 @@ public class KhoiThiView extends javax.swing.JFrame {
         jPanel1.add(monThiPanel);
         monThiPanel.setBounds(910, 80, 160, 350);
 
-        jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
+        jLabel9.setIcon(new ImageIcon(getClass().getResource("/images/GT.jpg")));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel9);
         jLabel9.setBounds(-30, -30, 1640, 890);
@@ -871,8 +869,10 @@ public class KhoiThiView extends javax.swing.JFrame {
         SearchDialog.setVisible(true);
     }
     
-  private void loadMonThiCheckBoxes() {
-    List<MonThi> listMonThi = MonThiXML.readFromFile("monthi.xml");
+ private void loadMonThiCheckBoxes() {
+    MonThiXML monThiXML = (MonThiXML) FileUtils.readXMLFilePortable(RESOURCE_PATH, MonThiXML.class);
+    List<MonThi> listMonThi = (monThiXML != null) ? monThiXML.getMonThi() : new ArrayList<>();
+
     monThiPanel.removeAll(); // Xóa hết nếu đã có
 
     for (MonThi mt : listMonThi) {
@@ -883,7 +883,6 @@ public class KhoiThiView extends javax.swing.JFrame {
     monThiPanel.revalidate();
     monThiPanel.repaint();
 }
-
 
     
    

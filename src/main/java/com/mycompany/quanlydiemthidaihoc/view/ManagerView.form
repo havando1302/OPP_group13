@@ -579,7 +579,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/add.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/add.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="&quot;Th&#xea;m&quot;" type="code"/>
@@ -610,7 +610,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/cancel.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/cancel.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#x1ee7;y t&#xec;m ki&#x1ebf;m" postCode="btnCancelSearch.setEnabled(false);"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -637,7 +637,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/LogOut.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/LogOut.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Quay l&#x1ea1;i"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -664,7 +664,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/delete.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/delete.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -690,7 +690,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/trash.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/trash.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -717,7 +717,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/search.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/search.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -744,7 +744,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/Edit.png&quot;)" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/Edit.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -764,12 +764,11 @@
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="imageIcon" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;/images/logoHN.png&quot;))" type="code"/>
                 </Property>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel4.setOpaque(false);"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon imageIcon = new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/logoHN.png&quot;);&#xa;Image image = imageIcon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);&#xa;imageIcon=new ImageIcon(image);"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -1289,7 +1288,7 @@
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ImageIcon(&quot;src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg&quot;)" type="code"/>
+              <Connection code="new ImageIcon(getClass().getResource(&quot;/images/GT.jpg&quot;))" type="code"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>

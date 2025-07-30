@@ -484,7 +484,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnAdd.setBackground(new java.awt.Color(0, 0, 102));
         btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/add.png"));
+        btnAdd.setIcon(new ImageIcon(getClass().getResource("/images/add.png")));
         btnAdd.setText("Thêm");
         btnAdd.setBorder(null);
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -497,7 +497,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnCancelSearch.setBackground(new java.awt.Color(0, 0, 102));
         btnCancelSearch.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCancelSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelSearch.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/cancel.png"));
+        btnCancelSearch.setIcon(new ImageIcon(getClass().getResource("/images/cancel.png")));
         btnCancelSearch.setText("Hủy tìm kiếm");
         btnCancelSearch.setEnabled(false);
         btnCancelSearch.setToolTipText("");
@@ -512,7 +512,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnManagerUndo.setBackground(new java.awt.Color(0, 0, 102));
         btnManagerUndo.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnManagerUndo.setForeground(new java.awt.Color(255, 255, 255));
-        btnManagerUndo.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/LogOut.png"));
+        btnManagerUndo.setIcon(new ImageIcon(getClass().getResource("/images/LogOut.png")));
         btnManagerUndo.setText("Quay lại");
         btnManagerUndo.setToolTipText("");
         btnManagerUndo.setBorder(null);
@@ -526,7 +526,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnDelete.setBackground(new java.awt.Color(0, 0, 102));
         btnDelete.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/delete.png"));
+        btnDelete.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
         btnDelete.setText("Xóa");
         btnDelete.setBorder(null);
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -539,7 +539,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnClear.setBackground(new java.awt.Color(0, 0, 102));
         btnClear.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnClear.setForeground(new java.awt.Color(255, 255, 255));
-        btnClear.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/trash.png"));
+        btnClear.setIcon(new ImageIcon(getClass().getResource("/images/trash.png")));
         btnClear.setText("Làm mới");
         btnClear.setToolTipText("");
         btnClear.setBorder(null);
@@ -553,7 +553,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnSearch.setBackground(new java.awt.Color(0, 0, 102));
         btnSearch.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/search.png"));
+        btnSearch.setIcon(new ImageIcon(getClass().getResource("/images/search.png")));
         btnSearch.setText("Tìm kiếm");
         btnSearch.setBorder(null);
         btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -567,7 +567,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         btnEdit.setBackground(new java.awt.Color(0, 0, 102));
         btnEdit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Edit.png"));
+        btnEdit.setIcon(new ImageIcon(getClass().getResource("/images/Edit.png")));
         btnEdit.setText("Sửa");
         btnEdit.setBorder(null);
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -577,10 +577,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
             }
         });
 
-        ImageIcon imageIcon = new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/logoHN.png");
-        Image image = imageIcon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
-        imageIcon=new ImageIcon(image);
-        jLabel14.setIcon(imageIcon);
+        jLabel14.setIcon(new ImageIcon(getClass().getResource("/images/logoHN.png")));
         jLabel4.setOpaque(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -855,7 +852,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         FieldID.setBounds(260, 38, 70, 40);
         FieldID.setOpaque(false);
 
-        jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
+        jLabel9.setIcon(new ImageIcon(getClass().getResource("/images/GT.jpg")));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel9);
         jLabel9.setBounds(-180, 0, 1640, 890);
@@ -985,6 +982,8 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ManagerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -1296,7 +1295,7 @@ public void fillSpecialPersonFromSelectedRow() {
         for (ThiSinh ts : listThiSinh) {
             if (ts.getSBD().equalsIgnoreCase(sbd)) {
                 SBD.requestFocus();
-                showMessage("❌ Số báo danh đã tồn tại. Vui lòng nhập số khác.");
+                showMessage("❌ Số báo danh đã tồn tại trong danh sách. Vui lòng nhập số khác.");
                 return false;
             }
         }
@@ -1304,6 +1303,7 @@ public void fillSpecialPersonFromSelectedRow() {
 
     return true;
 }
+
 
 
    
@@ -1527,7 +1527,7 @@ public void fillSpecialPersonFromSelectedRow() {
 }
     private void initComboBoxType() {
     
-    ArrayList<KhoiThi> dsKhoi = KhoiThiXML.docFile("khoithi.xml");
+    ArrayList<KhoiThi> dsKhoi = KhoiThiXML.docFile("KhoiThi.xml");
 
     DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
     model.addElement("Tất cả");

@@ -139,7 +139,7 @@ public class TraCuuView extends javax.swing.JFrame {
         btnResidentUndo.setText("Thoát");
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/trangchu.jpg"));
+        jLabel9.setIcon(new ImageIcon(getClass().getResource("/images/trangchu.jpg")));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -54,8 +54,8 @@ class AddListener implements ActionListener {
             List<DiemThi> danhSachGoc = DiemThiXML.docDiemThi();
 
             // Xóa tất cả điểm cũ của thí sinh này
-            danhSachGoc.removeIf(d -> d.getTenThiSinh().equalsIgnoreCase(ten)
-                                   && d.getSoBaoDanh().equalsIgnoreCase(sbd)
+            danhSachGoc.removeIf(d -> d.getSoBaoDanh().equalsIgnoreCase(sbd)
+                                   && d.getTenThiSinh().equalsIgnoreCase(ten)
                                    && d.getKhoiThi().equalsIgnoreCase(khoi));
 
             // Thêm điểm mới vào danh sách
@@ -65,7 +65,7 @@ class AddListener implements ActionListener {
             DiemThiXML.luuDiemThi(new ArrayList<>(danhSachGoc));
 
             // Cập nhật lại giao diện
-            diemThiView.showDiem(ten, sbd, khoi);
+            diemThiView.showDiem(sbd, ten, khoi);
             diemThiView.loadThiSinhDaNhap(danhSachGoc);
             diemThiView.showMessage("✅ Đã lưu điểm cho thí sinh \"" + ten + "\"!");
         } else {
@@ -104,10 +104,10 @@ class AddListener implements ActionListener {
             boolean deleted = managerDiemThi.delete(diem);
             if (deleted) {
                 diemThiView.clearDiemThiInfo();
-                String ten = diemThiView.getTenThiSinhDangChon();
                 String sbd = diemThiView.getSoBaoDanhDangChon();
+                String ten = diemThiView.getTenThiSinhDangChon();
                 String khoi = diemThiView.getKhoiThiDangChon();
-                diemThiView.showDiem(ten, sbd, khoi);
+                diemThiView.showDiem(sbd, ten, khoi);
                 diemThiView.showMessage("Xóa thành công!");
             } else {
                 diemThiView.showMessage("Không tìm thấy điểm thi để xóa.");

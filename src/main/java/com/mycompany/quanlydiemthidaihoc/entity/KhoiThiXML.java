@@ -1,16 +1,18 @@
 package com.mycompany.quanlydiemthidaihoc.entity;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import com.mycompany.quanlydiemthidaihoc.utils.FileUtils;
+
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "KhoiThiXML")
 public class KhoiThiXML {
+
+    // Đường dẫn đến file XML (đọc từ resources hoặc thư mục data)
+    private static final String RESOURCE_PATH = "khoithi.xml";
 
     // Danh sách khối thi (dùng chung toàn cục)
     private static List<KhoiThi> listKhoiThi = new ArrayList<>();
@@ -30,15 +32,12 @@ public class KhoiThiXML {
     public static ArrayList<KhoiThi> docFile(String filePath) {
         ArrayList<KhoiThi> list = new ArrayList<>();
         try {
-            File file = new File(filePath);
-            JAXBContext jaxbContext = JAXBContext.newInstance(KhoiThiXML.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            KhoiThiXML khoiThiXML = (KhoiThiXML) unmarshaller.unmarshal(file);
-            if (khoiThiXML.getKhoiThi() != null) {
+            KhoiThiXML khoiThiXML = (KhoiThiXML) FileUtils.readXMLFilePortable(filePath, KhoiThiXML.class);
+            if (khoiThiXML != null && khoiThiXML.getKhoiThi() != null) {
                 list.addAll(khoiThiXML.getKhoiThi());
                 listKhoiThi = list; // Gán dữ liệu cho biến static
             }
-        } catch (JAXBException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
@@ -47,6 +46,11 @@ public class KhoiThiXML {
     // Hàm gọi riêng để load dữ liệu dùng trong chương trình chính
     public static void loadFromFile(String filePath) {
         docFile(filePath); // đã gán cho listKhoiThi bên trong
+    }
+
+    // Overload: Load từ mặc định RESOURCE_PATH
+    public static void loadFromResource() {
+        docFile(RESOURCE_PATH);
     }
 
     // Trả về danh sách môn thi theo tên khối
@@ -59,6 +63,4 @@ public class KhoiThiXML {
         }
         return new ArrayList<>();
     }
-
-   
 }

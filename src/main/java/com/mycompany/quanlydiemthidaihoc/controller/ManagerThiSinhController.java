@@ -70,21 +70,36 @@ public class ManagerThiSinhController
 }
 
 
-    class AddSpecialPersonListener implements ActionListener 
-    {
-        public void actionPerformed(ActionEvent e) 
-        {
-            ThiSinh specialPerson = ThiSinhView.getSpecialPersonInfo();
-            if (specialPerson != null) 
-            {
-                managerThiSinh.add(specialPerson);
-                ThiSinhView.showSpecialPerson(specialPerson);
-                ThiSinhView.showListSpecialPersons(managerThiSinh.getListThiSinh());
-                ThiSinhView.showCountListSpecialPersons(managerThiSinh.getListThiSinh());
-                ThiSinhView.showMessage("Thêm thành công!");
+   class AddSpecialPersonListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+        ThiSinh specialPerson = ThiSinhView.getSpecialPersonInfo();
+        if (specialPerson != null) {
+            String sbdMoi = specialPerson.getSBD().trim();
+
+            // Kiểm tra trùng SBD
+            boolean trung = false;
+            for (ThiSinh ts : managerThiSinh.getListThiSinh()) {
+                if (ts.getSBD().equalsIgnoreCase(sbdMoi)) {
+                    trung = true;
+                    break;
+                }
             }
+
+            if (trung) {
+                ThiSinhView.showMessage("❌ Số báo danh đã tồn tại. Vui lòng nhập số khác.");
+                return;
+            }
+
+            // Nếu không trùng, thêm vào danh sách
+            managerThiSinh.add(specialPerson);
+            ThiSinhView.showSpecialPerson(specialPerson);
+            ThiSinhView.showListSpecialPersons(managerThiSinh.getListThiSinh());
+            ThiSinhView.showCountListSpecialPersons(managerThiSinh.getListThiSinh());
+            ThiSinhView.showMessage("✅ Thêm thành công!");
         }
     }
+}
+
     
     class EditSpecialPersonListener implements ActionListener 
     {

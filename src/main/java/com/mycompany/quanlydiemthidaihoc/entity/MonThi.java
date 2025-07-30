@@ -1,22 +1,36 @@
 package com.mycompany.quanlydiemthidaihoc.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "MonThi")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MonThi {
-    private int id;         
-    private String maMon;   
-    private String tenMon;  
 
+    @XmlElement(name = "id")
+    private int id;
+
+    @XmlElement(name = "maMon")
+    private String maMon;
+
+    @XmlElement(name = "tenMon")
+    private String tenMon;
+
+    // Constructors
     public MonThi() {}
 
-   public MonThi(String maMon, String tenMon) {
+    public MonThi(String maMon, String tenMon) {
         this.maMon = maMon;
         this.tenMon = tenMon;
     }
- public MonThi(String tenMon) {
-    this.tenMon = tenMon;
-}
+
+    public MonThi(String tenMon) {
+        this.tenMon = tenMon;
+    }
+
+    // Getters & Setters
     public int getId() {
         return id;
     }
@@ -40,7 +54,7 @@ public class MonThi {
     public void setTenMon(String tenMon) {
         this.tenMon = tenMon;
     }
-    
+
     @Override
     public String toString() {
         return maMon + tenMon;

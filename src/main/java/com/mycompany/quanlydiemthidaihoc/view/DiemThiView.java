@@ -108,8 +108,13 @@ public String getKhoiThiDangChon() {
 
 
 public void loadThiSinhDaNhap(List<DiemThi> list) {
-    DefaultTableModel model = (DefaultTableModel) tableThiSinhDaNhap.getModel();
-    model.setRowCount(0); // Xóa dữ liệu cũ
+    DefaultTableModel model = new DefaultTableModel(new String[]{"SBD", "Họ tên", "Khối thi", "Hành động"}, 0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            
+            return column == 3;
+        }
+    };
 
     Set<String> sbdDaCo = new HashSet<>();
     for (DiemThi diem : list) {
@@ -119,15 +124,16 @@ public void loadThiSinhDaNhap(List<DiemThi> list) {
                 diem.getSoBaoDanh(),
                 diem.getTenThiSinh(),
                 diem.getKhoiThi(),
-                "Xóa" 
+                "Xóa"
             });
         }
     }
 
-    
+    tableThiSinhDaNhap.setModel(model);
+
+    // Cột "Xóa" dùng button
     tableThiSinhDaNhap.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
     tableThiSinhDaNhap.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(new JCheckBox(), tableThiSinhDaNhap, this));
-
 }
 
 
@@ -355,6 +361,9 @@ public void clearDiemThiInfo() {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableThongTinThiSinh = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -375,7 +384,7 @@ public void clearDiemThiInfo() {
         btnResidentUndo.setBackground(new java.awt.Color(0, 0, 102));
         btnResidentUndo.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnResidentUndo.setForeground(new java.awt.Color(255, 255, 255));
-        btnResidentUndo.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/LogOut.png"));
+        btnResidentUndo.setIcon(new ImageIcon(getClass().getResource("/images/LogOut.png")));
         btnResidentUndo.setText("Quay lại");
         btnResidentUndo.setToolTipText("");
         btnResidentUndo.setBorder(null);
@@ -389,7 +398,7 @@ public void clearDiemThiInfo() {
         btnLuu.setBackground(new java.awt.Color(0, 0, 102));
         btnLuu.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnLuu.setForeground(new java.awt.Color(255, 255, 255));
-        btnLuu.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/add.png"));
+        btnLuu.setIcon(new ImageIcon(getClass().getResource("/images/add.png")));
         btnLuu.setText("Lưu");
         btnLuu.setBorder(null);
         btnLuu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -402,7 +411,7 @@ public void clearDiemThiInfo() {
         btnEdit.setBackground(new java.awt.Color(0, 0, 102));
         btnEdit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Edit.png"));
+        btnEdit.setIcon(new ImageIcon(getClass().getResource("/images/Edit.png")));
         btnEdit.setText("Cập nhật");
         btnEdit.setBorder(null);
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -415,7 +424,7 @@ public void clearDiemThiInfo() {
         btnDelete.setBackground(new java.awt.Color(0, 0, 102));
         btnDelete.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/delete.png"));
+        btnDelete.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
         btnDelete.setText("Xóa");
         btnDelete.setBorder(null);
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -428,7 +437,7 @@ public void clearDiemThiInfo() {
         btnClear.setBackground(new java.awt.Color(0, 0, 102));
         btnClear.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnClear.setForeground(new java.awt.Color(255, 255, 255));
-        btnClear.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/trash.png"));
+        btnClear.setIcon(new ImageIcon(getClass().getResource("/images/trash.png")));
         btnClear.setText("Làm mới");
         btnClear.setToolTipText("");
         btnClear.setBorder(null);
@@ -439,10 +448,7 @@ public void clearDiemThiInfo() {
             }
         });
 
-        ImageIcon imageIcon = new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/logoHN.png");
-        Image image = imageIcon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
-        imageIcon=new ImageIcon(image);
-        jLabel2.setIcon(imageIcon);
+        jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/logoHN.png")));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -525,6 +531,21 @@ public void clearDiemThiInfo() {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(240, 350, 190, 20);
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setText("Thông Tin Thí Sinh");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(240, 230, 160, 21);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel3.setText("(đã nhập điểm)");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(410, 350, 120, 21);
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel6.setText("Nhập Điểm");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(1000, 140, 100, 21);
+
         jScrollPane2.setBackground(new java.awt.Color(0, 102, 255));
         jScrollPane2.setForeground(new java.awt.Color(0, 102, 255));
         // Ví dụ màu xanh nhạt
@@ -581,10 +602,10 @@ public void clearDiemThiInfo() {
         jPanel1.add(jScrollPane4);
         jScrollPane4.setBounds(230, 380, 1040, 402);
 
-        jLabel9.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/Lovepik_com-500330964-blue-blazed-background.jpg"));
+        jLabel9.setIcon(new ImageIcon(getClass().getResource("/images/GT.jpg")));
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(-20, -40, 1640, 890);
+        jLabel9.setBounds(0, -50, 1740, 890);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -676,6 +697,10 @@ public void clearDiemThiInfo() {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -699,19 +724,21 @@ public void clearDiemThiInfo() {
 }
 
 
-    public void hienThiThongTinThiSinh(ThiSinh ts) {
-    DefaultTableModel model = new DefaultTableModel();
-    model.setColumnIdentifiers(new String[]{"Họ tên", "SBD", "Khối thi"});
-    
+   public void hienThiThongTinThiSinh(ThiSinh ts) {
+    DefaultTableModel model = new DefaultTableModel(new String[]{"Họ tên", "SBD", "Khối thi"}, 0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; 
+        }
+    };
+
     // Thêm dòng dữ liệu
     model.addRow(new Object[]{
         ts.getName(), ts.getSBD(), ts.getType()
     });
 
-    // Set model cho bảng và không cho chỉnh sửa
-    tableThongTinThiSinh.setModel(model);
     
-    // Không cho sửa ô
+    tableThongTinThiSinh.setModel(model);
     tableThongTinThiSinh.setEnabled(false); // hoặc override cell editor để chỉnh chi tiết hơn
 }
 public void hienThiBangDiemThi(String sbd, String khoi) {
@@ -784,7 +811,10 @@ public void hienThiBangDiemThi(String sbd, String khoi) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -50,38 +50,56 @@ public class ManagerKhoiThiController {
         }
     }
 
-    class AddKhoiThiListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            try {
-                KhoiThi khoi = khoiThiView.getKhoiThiInfo();
-                managerKhoiThi.add(khoi);
-                khoiThiView.showKhoiThi(khoi);
-                khoiThiView.showListKhoiThi(managerKhoiThi.getListKhoiThi());
-                khoiThiView.showMessage("Thêm thành công!");
-            } catch (IllegalArgumentException ex) {
-                khoiThiView.showMessage(ex.getMessage());
+   class AddKhoiThiListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+        try {
+            KhoiThi khoi = khoiThiView.getKhoiThiInfo();
+
+            boolean exists = managerKhoiThi.getListKhoiThi().stream()
+                    .anyMatch(k -> k.getTenKhoi().equalsIgnoreCase(khoi.getTenKhoi()));
+            if (exists) {
+                khoiThiView.showMessage(" Vui lòng nhập tên khác.");
+                return;
             }
+
+            managerKhoiThi.add(khoi);
+            khoiThiView.showKhoiThi(khoi);
+            khoiThiView.showListKhoiThi(managerKhoiThi.getListKhoiThi());
+            khoiThiView.showMessage("✅ Thêm thành công!");
+        } catch (IllegalArgumentException ex) {
+            khoiThiView.showMessage(ex.getMessage());
         }
     }
+}
 
-   class EditKhoiThiListener implements ActionListener {
+
+  class EditKhoiThiListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         KhoiThi khoi = khoiThiView.getKhoiThiInfo();
         if (khoi != null) {
             try {
-                managerKhoiThi.edit(khoi);  // cập nhật
-                khoiThiView.showKhoiThi(khoi); // hiển thị lại thông tin
-                khoiThiView.showListKhoiThi(managerKhoiThi.getListKhoiThi()); // cập nhật bảng
-                khoiThiView.showMessage("Cập nhật thành công!");
+                boolean duplicateName = managerKhoiThi.getListKhoiThi().stream()
+                        .anyMatch(k -> k.getTenKhoi().equalsIgnoreCase(khoi.getTenKhoi()) && k.getId() != khoi.getId());
+
+                if (duplicateName) {
+                    khoiThiView.showMessage(" Vui lòng chọn tên khác.");
+                    return;
+                }
+
+                managerKhoiThi.edit(khoi);
+                khoiThiView.showKhoiThi(khoi);
+                khoiThiView.showListKhoiThi(managerKhoiThi.getListKhoiThi());
+                khoiThiView.showMessage("✅ Cập nhật thành công!");
             } catch (ParseException ex) {
                 Logger.getLogger(ManagerKhoiThiController.class.getName()).log(Level.SEVERE, null, ex);
-                khoiThiView.showMessage("Lỗi khi cập nhật khối thi!");
+                khoiThiView.showMessage("❌ Lỗi khi cập nhật khối thi!");
             }
         } else {
-            khoiThiView.showMessage("Vui lòng chọn khối thi để cập nhật.");
+            khoiThiView.showMessage("⚠️ Vui lòng chọn khối thi để cập nhật.");
         }
     }
 }
+
 
 
     class DeleteKhoiThiListener implements ActionListener {

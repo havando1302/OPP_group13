@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DiemThiXML>
+    <DiemThi>
+        <diem>5.6</diem>
+        <khoiThi>A00</khoiThi>
+        <monThi>Toán</monThi>
+        <soBaoDanh>NA1212</soBaoDanh>
+        <tenThiSinh>Hà Văn Đô</tenThiSinh>
+    </DiemThi>
+    <DiemThi>
+        <diem>6.7</diem>
+        <khoiThi>A00</khoiThi>
+        <monThi>Hóa</monThi>
+        <soBaoDanh>NA1212</soBaoDanh>
+        <tenThiSinh>Hà Văn Đô</tenThiSinh>
+    </DiemThi>
+    <DiemThi>
+        <diem>9.0</diem>
+        <khoiThi>A01</khoiThi>
+        <monThi>Toán</monThi>
+        <soBaoDanh>NA1211</soBaoDanh>
+        <tenThiSinh>Hà Văn Đạt</tenThiSinh>
+    </DiemThi>
+    <DiemThi>
+        <diem>8.0</diem>
+        <khoiThi>A01</khoiThi>
+        <monThi>Tiếng Anh</monThi>
+        <soBaoDanh>NA1211</soBaoDanh>
+        <tenThiSinh>Hà Văn Đạt</tenThiSinh>
+    </DiemThi>
+    <DiemThi>
+        <diem>7.8</diem>
+        <khoiThi>B00</khoiThi>
+        <monThi>Toán</monThi>
+        <soBaoDanh>NA1213</soBaoDanh>
+        <tenThiSinh>Nguyễn Quang Thọ</tenThiSinh>
+    </DiemThi>
+    <DiemThi>
+        <diem>9.8</diem>
+        <khoiThi>B00</khoiThi>
+        <monThi>Hóa</monThi>
+        <soBaoDanh>NA1213</soBaoDanh>
+        <tenThiSinh>Nguyễn Quang Thọ</tenThiSinh>
+    </DiemThi>
+    <DiemThi>
+        <diem>5.6</diem>
+        <khoiThi>B00</khoiThi>
+        <monThi>Sinh</monThi>
+        <soBaoDanh>NA1213</soBaoDanh>
+        <tenThiSinh>Nguyễn Quang Thọ</tenThiSinh>
+    </DiemThi>
+</DiemThiXML>

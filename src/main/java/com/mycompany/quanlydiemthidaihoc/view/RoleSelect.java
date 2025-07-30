@@ -88,7 +88,7 @@ public class RoleSelect extends javax.swing.JFrame
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setIcon(new ImageIcon("src/main/java/com/mycompany/quanlydiemthidaihoc/view/quyen.jpg"));
+        jLabel3.setIcon(new ImageIcon(getClass().getResource("/images/quyen.jpg")));
 
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel3.setBounds(0, 0, 550, 670);

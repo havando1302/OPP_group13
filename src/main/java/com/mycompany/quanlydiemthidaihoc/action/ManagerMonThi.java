@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ManagerMonThi {
-    private static final String FILE_NAME = "MonThi.xml";
+    private final String RESOURCE_PATH = "monthi.xml"; 
+
     private List<MonThi> listMonThi;
 
     public ManagerMonThi() {
@@ -18,18 +19,19 @@ public class ManagerMonThi {
     }
 
     public void reload() {
-        Object obj = FileUtils.readXMLFile(FILE_NAME, MonThiXML.class);
+        Object obj = FileUtils.readXMLFilePortable(RESOURCE_PATH, MonThiXML.class);
         if (obj instanceof MonThiXML wrapper && wrapper.getMonThi() != null) {
             this.listMonThi = wrapper.getMonThi();
         } else {
-            System.out.println("Không đọc được MonThiXML từ file: " + FILE_NAME);
+            this.listMonThi = new ArrayList<>();
+            System.out.println("⚠️ Không đọc được MonThiXML từ file: " + RESOURCE_PATH);
         }
     }
 
     public void writeListMonThi() {
         MonThiXML wrapper = new MonThiXML();
         wrapper.setMonThi(this.listMonThi);
-        FileUtils.writeXMLtoFile(FILE_NAME, wrapper);
+        FileUtils.writeXMLtoDataDir(RESOURCE_PATH, wrapper);
     }
 
     public List<MonThi> getListMonThi() {
@@ -63,25 +65,25 @@ public class ManagerMonThi {
     }
 
     public List<MonThi> searchByTenMon(String tenMon) {
-        reload(); 
+        reload();
         return listMonThi.stream()
                 .filter(m -> m.getTenMon().toLowerCase().contains(tenMon.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
     public List<MonThi> searchByMaMon(String maMon) {
-        reload(); 
+        reload();
         return listMonThi.stream()
                 .filter(m -> m.getMaMon().toLowerCase().contains(maMon.toLowerCase()))
                 .collect(Collectors.toList());
     }
-    
+
     public List<MonThi> sortByName() {
         return listMonThi.stream()
                 .sorted((a, b) -> a.getTenMon().compareToIgnoreCase(b.getTenMon()))
                 .collect(Collectors.toList());
     }
-    
+
     public List<MonThi> searchMonThi(String type, String keyword) {
         return listMonThi.stream()
                 .filter(mon -> {
